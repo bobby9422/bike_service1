@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Main2Activity">
+    <AbsoluteLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        >
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_x="41dp"
+        android:layout_y="44dp"
+        android:text="Service"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_x="45dp"
+        android:layout_y="129dp"
+        android:onClick="reminder"
+        android:text="Reminder add/update"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_x="41dp"
+        android:layout_y="205dp"
+        android:onClick="user"
+        android:text="user add/update"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_x="49dp"
+        android:layout_y="301dp"
+        android:text="Active Servicing"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_x="52dp"
+        android:layout_y="386dp"
+        android:onClick="active_reminder"
+        android:text="Active Reminder"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_x="52dp"
+        android:layout_y="459dp"
+        android:onClick="contact"
+        android:text="Customer Record"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_x="52dp"
+        android:layout_y="530dp"
+        android:onClick="logout"
+        android:text="Logout"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+    </AbsoluteLayout>
+</ScrollView>

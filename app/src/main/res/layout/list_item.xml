@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    >
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="#E6E6E0"
+        card_view:cardBackgroundColor="#ffffff"
+        card_view:cardCornerRadius="1dp"
+        card_view:cardElevation="4dp"
+        card_view:cardPreventCornerOverlap="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginBottom="2dp"
+        >
+        <AbsoluteLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:orientation="vertical"
+            >
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="7dp"
+            android:layout_y="5dp"
+            android:gravity="left"
+            android:text="name"
+            android:textColor="#000000"
+            android:textSize="16dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/mobile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="8dp"
+            android:layout_y="37dp"
+            android:text="mobile"
+            android:textColor="#0066ff"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="19dp" />
+
+        <TextView
+            android:id="@+id/vehicle_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="5dp"
+            android:layout_y="68dp"
+            android:text="vehicle no"
+            android:textColor="#000000"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="26dp" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="7dp"
+            android:layout_y="98dp"
+            android:text="Expected date"
+            android:textColor="#000000"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="382dp"
+            tools:layout_editor_absoluteY="19dp" />
+
+            <Button
+                android:id="@+id/button14"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_x="196dp"
+                android:layout_y="6dp"
+                android:text="send reminder" />
+
+            <Button
+                android:id="@+id/button17"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_x="197dp"
+                android:layout_y="49dp"
+                android:text="Change" />
+
+            <Button
+                android:id="@+id/button18"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_x="199dp"
+                android:layout_y="94dp"
+                android:text="Delete" />
+        </AbsoluteLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

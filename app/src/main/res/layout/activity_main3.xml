@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Main3Activity">
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_x="30dp"
+        android:layout_y="6dp"
+        android:ems="10"
+        android:hint="Enter Vehicle No"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="38dp" />
+
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_x="35dp"
+        android:layout_y="112dp"
+        android:ems="10"
+        android:hint="Enter Model Name"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="80dp" />
+
+    <EditText
+        android:id="@+id/editText5"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_x="37dp"
+        android:layout_y="198dp"
+        android:ems="10"
+        android:hint="Enter Name"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="37dp"
+        tools:layout_editor_absoluteY="197dp" />
+
+    <EditText
+        android:id="@+id/editText6"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_x="40dp"
+        android:layout_y="274dp"
+        android:ems="10"
+        android:hint="Enter Mobile No"
+        android:inputType="phone"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="290dp" />
+
+    <EditText
+        android:id="@+id/editText7"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_x="42dp"
+        android:layout_y="351dp"
+        android:ems="10"
+        android:hint="Enter Email-Id"
+        android:inputType="textEmailAddress"
+        tools:layout_editor_absoluteX="37dp"
+        tools:layout_editor_absoluteY="381dp" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="142dp"
+        android:layout_height="wrap_content"
+        android:layout_x="44dp"
+        android:layout_y="438dp"
+        android:onClick="add"
+        android:text="ADD"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="433dp" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="138dp"
+        android:layout_height="wrap_content"
+        android:layout_x="203dp"
+        android:layout_y="438dp"
+        android:onClick="cancel"
+        android:text="Cancel"
+        tools:layout_editor_absoluteX="252dp"
+        tools:layout_editor_absoluteY="440dp" />
+
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="138dp"
+        android:layout_height="wrap_content"
+        android:layout_x="46dp"
+        android:layout_y="436dp"
+        android:onClick="update"
+        android:text="Update"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="436dp" />
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_x="31dp"
+        android:layout_y="59dp"
+        android:onClick="search"
+        android:text="search"
+        tools:layout_editor_absoluteX="117dp"
+        tools:layout_editor_absoluteY="56dp" />
+</AbsoluteLayout>
