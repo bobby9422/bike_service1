@@ -85,7 +85,7 @@ public class Main6Activity extends AppCompatActivity {
                                     int before, int count) {
               Toast.makeText(Main6Activity.this, "change"+s,
                       Toast.LENGTH_LONG).show();
-              adapter.getFilter().filter(conlist.contains(s));
+              //adapter.getFilter().filter(conlist.contains(s));
           }
       });
 
