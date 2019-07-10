@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteX="140dp"
+    tools:layout_editor_absoluteY="510dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ServiceAddActivity">
+
+    <AbsoluteLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <EditText
+            android:id="@+id/sad_vehicleNo_editText"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_x="33dp"
+            android:layout_y="12dp"
+            android:ems="10"
+            android:hint="Enter Vehicle No"
+            android:inputType="textPersonName"
+            tools:layout_editor_absoluteX="26dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <Button
+            android:id="@+id/sad_search_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="292dp"
+            android:layout_y="13dp"
+            android:onClick="search"
+            android:text="search"
+            tools:layout_editor_absoluteX="131dp"
+            tools:layout_editor_absoluteY="119dp" />
+
+        <TextView
+            android:id="@+id/sad_name_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="35dp"
+            android:layout_y="89dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/sad_mobile_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="213dp"
+            android:layout_y="91dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/sad_sn_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="38dp"
+            android:layout_y="136dp"
+            android:text="TextView" />
+
+        <Button
+            android:id="@+id/sad_addService_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="143dp"
+            android:layout_y="157dp"
+            android:onClick="add"
+            android:text="ADD" />
+
+        <TextView
+            android:id="@+id/sad_date_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="307dp"
+            android:layout_y="228dp"
+            android:text="TextView" />
+
+        <EditText
+            android:id="@+id/sad_bRecord_editText"
+            android:layout_width="331dp"
+            android:layout_height="wrap_content"
+            android:layout_x="40dp"
+            android:layout_y="266dp"
+            android:ems="10"
+            android:hint="Bill Record"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/sad_amount_editText"
+            android:layout_width="97dp"
+            android:layout_height="wrap_content"
+            android:layout_x="162dp"
+            android:layout_y="328dp"
+            android:ems="10"
+            android:hint="Amount"
+            android:inputType="number"
+            android:text="0" />
+
+        <Button
+            android:id="@+id/sad_send_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="287dp"
+            android:layout_y="329dp"
+            android:onClick="send"
+            android:text="send"
+            tools:layout_editor_absoluteX="295dp"
+            tools:layout_editor_absoluteY="325dp" />
+
+        <Button
+            android:id="@+id/sad_bill_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="50dp"
+            android:layout_y="395dp"
+            android:onClick="bill"
+            android:text="bill" />
+
+        <Button
+            android:id="@+id/sad_delete_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="252dp"
+            android:layout_y="391dp"
+            android:onClick="delete"
+            android:text="delete" />
+
+    </AbsoluteLayout>
+    <AbsoluteLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        tools:context=".ServiceAddActivity">
+
+        <ListView
+            android:id="@+id/prlist"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:divider="@null"/>
+
+    </AbsoluteLayout>
+    </LinearLayout>
+</ScrollView>

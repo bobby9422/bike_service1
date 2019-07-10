@@ -28,6 +28,8 @@
             android:name=".BikeService"
             android:enabled="true"
             android:exported="true" />
+        <activity android:name=".ServiceViewActivity"></activity>
+        <activity android:name=".ServiceAddActivity" />
 
         <activity android:name=".Main5Activity">
             <intent-filter>

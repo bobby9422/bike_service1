@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    >
+
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginBottom="2dp"
+        android:background="#E6E6E0"
+        card_view:cardBackgroundColor="#ffffff"
+        card_view:cardCornerRadius="1dp"
+        card_view:cardElevation="4dp"
+        card_view:cardPreventCornerOverlap="true">
+
+        <AbsoluteLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/sva_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_x="16dp"
+                android:layout_y="38dp"
+                android:gravity="left"
+                android:text="name"
+                android:textColor="#000000"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/sva_mobile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_x="19dp"
+                android:layout_y="73dp"
+                android:text="mobile"
+                android:textColor="#0066ff"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="19dp" />
+
+            <TextView
+                android:id="@+id/sva_vehicle_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_x="19dp"
+                android:layout_y="111dp"
+                android:text="vehicle no"
+                android:textColor="#000000"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="26dp" />
+
+            <TextView
+                android:id="@+id/sva_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_x="136dp"
+                android:layout_y="5dp"
+                android:text="Date"
+                android:textColor="#000000"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="382dp"
+                tools:layout_editor_absoluteY="19dp" />
+
+            <Button
+                android:id="@+id/sva_update"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_x="280dp"
+                android:layout_y="27dp"
+                android:text="Update" />
+
+            <Button
+                android:id="@+id/sva_remove"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_x="282dp"
+                android:layout_y="82dp"
+                android:text="Remove" />
+        </AbsoluteLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

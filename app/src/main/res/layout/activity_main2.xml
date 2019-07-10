@@ -11,14 +11,16 @@
         android:layout_height="fill_parent"
         android:orientation="vertical"
         >
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_x="41dp"
-        android:layout_y="44dp"
-        android:text="Service"
-        android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_x="41dp"
+            android:layout_y="44dp"
+            android:onClick="service"
+            android:text="Service"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button" />
 
     <Button
         android:id="@+id/button4"
@@ -40,14 +42,15 @@
         android:text="user add/update"
         android:textAppearance="@style/TextAppearance.AppCompat.Button" />
 
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_x="49dp"
-        android:layout_y="301dp"
-        android:text="Active Servicing"
-        android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_x="49dp"
+            android:layout_y="301dp"
+            android:onClick="aservice"
+            android:text="Active Servicing"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button" />
 
 
     <Button
