@@ -22,19 +22,19 @@ public class Main2Activity extends AppCompatActivity {
     SharedPreferences prf;
 
 
-    @Override
-    public void onBackPressed()
-
-    {
-        Toast.makeText(this, "No exit!", Toast.LENGTH_SHORT).show();
-
-        Intent i = new Intent(this, Main2Activity.class);
-
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        this.startActivity(i);
-    }
+//    @Override
+//    public void onBackPressed()
+//
+//    {
+//        Toast.makeText(this, "No exit!", Toast.LENGTH_SHORT).show();
+//
+//        Intent i = new Intent(this, Main2Activity.class);
+//
+//        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//        this.startActivity(i);
+//    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,6 +114,7 @@ public class Main2Activity extends AppCompatActivity {
         editor.apply();
         i = new Intent(Main2Activity.this, MainActivity.class);
         // i.putExtra("user",user.getText().toString().toUpperCase());
+        finish();
         startActivity(i);
     }
     public void contact(View v)

@@ -17,18 +17,18 @@ Button b1,b2;
     SharedPreferences.Editor editor;
     SharedPreferences prf;
     Boolean doubleBackToExitPressedOnce=false;
-    @Override
-    public void onBackPressed() {
-        Toast.makeText(this, "No exit!", Toast.LENGTH_SHORT).show();
-
-        Intent i = new Intent(this, MainActivity.class);
-
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        this.startActivity(i);
-
-    }
+//    @Override
+//    public void onBackPressed() {
+//        Toast.makeText(this, "No exit!", Toast.LENGTH_SHORT).show();
+//
+//        Intent i = new Intent(this, MainActivity.class);
+//
+//        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//        this.startActivity(i);
+//
+//    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,8 +47,9 @@ Button b1,b2;
                 Toast.makeText(MainActivity.this,"Successful Login!",Toast.LENGTH_LONG).show();
                 Intent i = new Intent(MainActivity.this, Main2Activity.class);
                 // i.putExtra("user",user.getText().toString().toUpperCase());
-                startActivity(i);
 
+                finish();
+                startActivity(i);
             }
         }
         b1.setOnClickListener(new  View.OnClickListener() {

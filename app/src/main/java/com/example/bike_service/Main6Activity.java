@@ -40,6 +40,7 @@ public class Main6Activity extends AppCompatActivity {
         adapter = new ContactViewAdapter(this, 0, conlist);
         all=(Button)findViewById(R.id.call);
         search=(EditText)findViewById(R.id.editText11);
+        search.setVisibility(View.GONE);
         mydatabase = openOrCreateDatabase("service", MODE_PRIVATE, null);
         mydatabase.execSQL("CREATE TABLE IF NOT EXISTS user(vehicle VARCHAR,model VARCHAR,name VARCHAR,mobile VARCHAR,email VARCHAR);");
         resultSet = mydatabase.rawQuery("SELECT user.name, user.mobile, user.vehicle \n" +

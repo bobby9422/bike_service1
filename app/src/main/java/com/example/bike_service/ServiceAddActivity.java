@@ -222,7 +222,7 @@ catch(Exception e)
         {
         String amount=bamount.getText().toString();
         String summary=brecord.getText().toString();
-        if(!amount.equals("0"))
+        if(!amount.equals("0")||!amount.equals("")||!amount.equals(" "))
         {
 
                 mydatabase.execSQL("UPDATE service\n"+
@@ -266,7 +266,7 @@ catch(Exception e)
         {
             String amount=bamount.getText().toString();
             String summary=brecord.getText().toString();
-            if(!amount.equals("0"))
+            if(!amount.equals("0")||!amount.equals("")||!amount.equals(" "))
             {
 
                 mydatabase.execSQL("UPDATE service\n"+
@@ -287,7 +287,7 @@ catch(Exception e)
                 if(!summary.equals(""))
                 {
                     mydatabase.execSQL("UPDATE service\n"+
-                            "SET bill = '"+amount+"', summary='"+summary+"', edate='"+oldDate+"'\n" +
+                            "SET bill = '"+amount+"', summary='"+summary+"'\n" +
                             "WHERE edate = '' and vehicle='"+veh.getText().toString().toUpperCase()+"'");
                 }
             }
