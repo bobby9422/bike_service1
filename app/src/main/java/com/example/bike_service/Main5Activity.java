@@ -175,7 +175,7 @@ public class Main5Activity extends AppCompatActivity {
                           //  Toast.makeText(Main5Activity.this, d2+"No one to send reminder"+d1, Toast.LENGTH_LONG).show();
 
                             if(d1.compareTo(d2) <= 0 || d1.compareTo(d2)==0) {
-                                int i=ContextCompat.checkSelfPermission(Main5Activity.this,
+                                int i=ContextCompat.checkSelfPermission(getApplicationContext(),
                                         Manifest.permission.SEND_SMS);
                                 Toast.makeText(Main5Activity.this, "no Perm"+i,
                                         Toast.LENGTH_LONG).show();
