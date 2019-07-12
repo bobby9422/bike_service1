@@ -13,6 +13,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.telephony.SmsManager;
 import android.util.Log;
@@ -25,14 +26,21 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-    public class ListViewAdapter extends ArrayAdapter<vehicleview> {
+    public class ListViewAdapter extends ArrayAdapter<vehicleview> implements  ActivityCompat.OnRequestPermissionsResultCallback{
 
-    Cursor resultSet;
+
     SQLiteDatabase mydatabase;
     Intent i;
     private Context context;
     private List<vehicleview> vehlist;
-
+        TextView name1 ;
+        TextView mobile1=null;
+        TextView vehicle1 =null;
+        TextView date1;
+        Button change;
+        Button delete;
+        Button srem;
+        int pos;
     //constructor, call on creation
     public ListViewAdapter(Context context, int resource, ArrayList<vehicleview> objects) {
         super(context, resource, objects);
@@ -51,13 +59,13 @@ import android.widget.Toast;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         final View view = inflater.inflate(R.layout.list_item, null);
 
-        TextView name1 = (TextView) view.findViewById(R.id.name);
-        final TextView mobile1 = (TextView) view.findViewById(R.id.mobile);
-         final TextView vehicle1 = (TextView) view.findViewById(R.id.vehicle_no);
-        TextView date1 = (TextView) view.findViewById(R.id.date);
-        Button change=(Button)view.findViewById(R.id.button17) ;
-        Button delete=(Button)view.findViewById(R.id.button18) ;
-        Button srem=(Button)view.findViewById(R.id.button14) ;
+        name1 = (TextView) view.findViewById(R.id.name);
+        mobile1 = (TextView) view.findViewById(R.id.mobile);
+        vehicle1 = (TextView) view.findViewById(R.id.vehicle_no);
+       date1 = (TextView) view.findViewById(R.id.date);
+       change=(Button)view.findViewById(R.id.button17) ;
+      delete=(Button)view.findViewById(R.id.button18) ;
+      srem=(Button)view.findViewById(R.id.button14) ;
 
         //set address and description
         String name = vehviewlist.getName() ;
@@ -74,7 +82,7 @@ import android.widget.Toast;
             public void onClick(View v)
             {
 
-                String[] parts = mobile1.getText().toString().split(":");
+                String[] parts = vehlist.get(position).getMobile().toString().split(":");
                 String mobile = parts[1]; // 034556
                // Toast.makeText(context, ""+mobile, Toast.LENGTH_LONG).show();
                 try {
@@ -95,7 +103,7 @@ import android.widget.Toast;
             public void onClick(View v)
             {
 
-                String[] parts = vehicle1.getText().toString().split(":");
+                String[] parts = vehlist.get(position).getVehicle().toString().split(":");
                 String vno = parts[1]; // 034556
             //    Toast.makeText(context, ""+vno, Toast.LENGTH_LONG).show();
                 i = new Intent(context, Main4Activity.class);
@@ -109,22 +117,24 @@ import android.widget.Toast;
             @Override
             public void onClick(View v)
             {
+//            pos=position;
+//                boolean a=new mainPermission().checkPerm(((Main5Activity)context));
+//                if(a==true)
+//                {
+//                    messageAll(position);
+//                }
+//                else if(a==false)
+//                {
+//
+//                }
+
+
                 try {
 
-                    String[] parts = mobile1.getText().toString().split(":");
+                    String[] parts = vehlist.get(position).getMobile().toString().split(":");
                     String mobile = parts[1]; // 034556
-                  //  Toast.makeText(context, "" + mobile, Toast.LENGTH_LONG).show();
-                    if (ContextCompat.checkSelfPermission(context,
-                            Manifest.permission.SEND_SMS)
-                            != PackageManager.PERMISSION_GRANTED) {
-                        Toast.makeText(context, "no Perm",
-                                Toast.LENGTH_LONG).show();
-                    }
-                    else
-                    {
-                        Toast.makeText(context, "Perm",
-                                Toast.LENGTH_LONG).show();
-                    }
+                    //  Toast.makeText(context, "" + mobile, Toast.LENGTH_LONG).show();
+
                     Intent intent = new Intent(context, Main5Activity.class);
 
                     PendingIntent pi = PendingIntent.getActivity(context, 0, intent, 0);
@@ -144,7 +154,6 @@ import android.widget.Toast;
                     Toast.makeText(context, e.getMessage(),
                             Toast.LENGTH_LONG).show();
                 }
-
             }
 
         });
@@ -155,7 +164,7 @@ import android.widget.Toast;
             {
                 try {
 
-                    String[] parts = vehicle1.getText().toString().split(":");
+                    String[] parts = vehlist.get(position).getVehicle().toString().split(":");
                     String vno = parts[1]; // 034556
                //     Toast.makeText(context, ""+vno,
                  //           Toast.LENGTH_LONG).show();
@@ -184,6 +193,27 @@ import android.widget.Toast;
         });
         return view;
     }
+        @Override
+        public void onRequestPermissionsResult(
+                int requestCode,
+                String[] permissions,
+                int[] grantResults
+        )
+        {
+            if(requestCode==200 && grantResults[0]==0)
+            {
+                messageAll(pos);
+            }
+            else if(requestCode==200 && grantResults[0]==-1)
+            {
+                Toast.makeText(context,"Allow message permission!!" , Toast.LENGTH_LONG).show();
+            }
+        }
+
+public void messageAll(int position)
+{
+
 }
+    }
 
 

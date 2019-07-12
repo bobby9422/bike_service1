@@ -74,7 +74,7 @@ public class ContactViewAdapter extends ArrayAdapter<contactview> {
                // String mobile = parts[1]; // 034556
                 // Toast.makeText(context, ""+mobile, Toast.LENGTH_LONG).show();
                 try {
-                    String mobile=mobile1.getText().toString();
+                    String mobile=conlist.get(position).getMobile().toString();
                     Intent callIntent = new Intent(Intent.ACTION_CALL);
                     callIntent.setData(Uri.parse("tel:+91" + mobile));//change the number.
                     context.startActivity(callIntent);

@@ -69,7 +69,7 @@ public class svaviewadaptor extends ArrayAdapter<svaview> {
 
                 try {
                     Intent callIntent = new Intent(Intent.ACTION_CALL);
-                    callIntent.setData(Uri.parse("tel:+91" + mobile1.getText().toString()));//change the number.
+                    callIntent.setData(Uri.parse("tel:+91" + svalist.get(position).getMobile().toString()));//change the number.
                     context.startActivity(callIntent);
                 }
                 catch(Exception e)
@@ -86,7 +86,7 @@ public class svaviewadaptor extends ArrayAdapter<svaview> {
             {
 
                 i = new Intent(context, ServiceAddActivity.class);
-                i.putExtra("vehicle",vehicle1.getText().toString().toUpperCase());
+                i.putExtra("vehicle",svalist.get(position).getVehicle().toString().toUpperCase());
                 context.startActivity(i);
             }
 
@@ -104,7 +104,7 @@ public class svaviewadaptor extends ArrayAdapter<svaview> {
 //                    Toast.makeText(context, "!"+vehicle1.getText().toString().toUpperCase()+"pp",
 //                            Toast.LENGTH_LONG).show();
 //                    Log.d("android","vehicle:"+vehicle1.getText().toString().toUpperCase());
-                    mydatabase.execSQL("DELETE FROM service WHERE vehicle='" + vehicle1.getText().toString().toUpperCase() + "' and edate = ''");
+                    mydatabase.execSQL("DELETE FROM service WHERE vehicle='" + svalist.get(position).getVehicle().toString().toUpperCase() + "' and edate = ''");
                     Toast.makeText(context, "Deleted!",
                             Toast.LENGTH_LONG).show();
                     mydatabase.close();
