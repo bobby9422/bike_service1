@@ -353,7 +353,7 @@ public class Main4Activity extends AppCompatActivity {
         try {
         i=getIntent();
         String no=i.getStringExtra("vehicle");
-            Toast.makeText(Main4Activity.this, "nn", Toast.LENGTH_LONG).show();
+            //Toast.makeText(Main4Activity.this, "nn", Toast.LENGTH_LONG).show();
         //    Toast.makeText(Main4Activity.this, "hello:" +no , Toast.LENGTH_LONG).show();
 
         if(!no.toString().isEmpty()){

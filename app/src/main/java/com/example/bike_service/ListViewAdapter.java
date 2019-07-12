@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.support.v4.content.ContextCompat;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,7 +25,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ListViewAdapter extends ArrayAdapter<vehicleview> {
+    public class ListViewAdapter extends ArrayAdapter<vehicleview> {
 
     Cursor resultSet;
     SQLiteDatabase mydatabase;
@@ -111,6 +114,17 @@ public class ListViewAdapter extends ArrayAdapter<vehicleview> {
                     String[] parts = mobile1.getText().toString().split(":");
                     String mobile = parts[1]; // 034556
                   //  Toast.makeText(context, "" + mobile, Toast.LENGTH_LONG).show();
+                    if (ContextCompat.checkSelfPermission(context,
+                            Manifest.permission.SEND_SMS)
+                            != PackageManager.PERMISSION_GRANTED) {
+                        Toast.makeText(context, "no Perm",
+                                Toast.LENGTH_LONG).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(context, "Perm",
+                                Toast.LENGTH_LONG).show();
+                    }
                     Intent intent = new Intent(context, Main5Activity.class);
 
                     PendingIntent pi = PendingIntent.getActivity(context, 0, intent, 0);
@@ -119,7 +133,7 @@ public class ListViewAdapter extends ArrayAdapter<vehicleview> {
                     SmsManager
                             sms = SmsManager.getDefault();
                     sms.sendTextMessage("+91" + mobile, null, "SHRI SAI AUTOMOBILE\nYOUR bile service date is here", pi, null);
-
+                    ((Main5Activity)context).finish();
                     Toast.makeText(context, "Message Sent successfully!",
                             Toast.LENGTH_LONG).show();
 

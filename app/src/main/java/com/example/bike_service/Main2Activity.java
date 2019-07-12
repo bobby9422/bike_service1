@@ -36,7 +36,7 @@ public class Main2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
         this.setTitle("Menu");
         prf = getSharedPreferences("login",MODE_PRIVATE);
-        Toast.makeText(Main2Activity.this,"Main2Activity.this onCreate invoked",Toast.LENGTH_LONG).show();
+       // Toast.makeText(Main2Activity.this,"Main2Activity.this onCreate invoked",Toast.LENGTH_LONG).show();
 
 //        Intent alarmIntent = new Intent(this, BootCompletedIntentReceiver.class);
 //        pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);

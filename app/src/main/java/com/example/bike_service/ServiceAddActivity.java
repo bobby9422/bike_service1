@@ -222,7 +222,7 @@ catch(Exception e)
         {
         String amount=bamount.getText().toString();
         String summary=brecord.getText().toString();
-        if(!amount.equals("0")||!amount.equals("")||!amount.equals(" "))
+        if(!amount.equals("0"))
         {
 
                 mydatabase.execSQL("UPDATE service\n"+
@@ -266,7 +266,7 @@ catch(Exception e)
         {
             String amount=bamount.getText().toString();
             String summary=brecord.getText().toString();
-            if(!amount.equals("0")||!amount.equals("")||!amount.equals(" "))
+            if(!amount.equals("0"))
             {
 
                 mydatabase.execSQL("UPDATE service\n"+

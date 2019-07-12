@@ -37,7 +37,7 @@ View v;
         user=(EditText)findViewById(R.id.editText);
         pass=(EditText)findViewById(R.id.editText2);
         b1=(Button)findViewById(R.id.button);
-        Toast.makeText(MainActivity.this,"MainActivity.this onCreate invoked",Toast.LENGTH_LONG).show();
+       // Toast.makeText(MainActivity.this,"MainActivity.this onCreate invoked",Toast.LENGTH_LONG).show();
 
         if(sharedpreferences.contains("user") && sharedpreferences.contains("pass")){
             if((sharedpreferences.getString("user","null").equalsIgnoreCase("bobby")) && (sharedpreferences.getString("pass","null").equals("login"))) {

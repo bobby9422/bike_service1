@@ -1,11 +1,14 @@
 package com.example.bike_service;
 
+import android.Manifest;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
@@ -158,8 +161,7 @@ public class Main5Activity extends AppCompatActivity {
                         //        , 0, intent, 0);
 
                         //Get the SmsManager instance and call the sendTextMessage method to send message
-                        SmsManager
-                                sms = SmsManager.getDefault();
+
                         for(String number : amobile) {
                             String[] parts = number.toString().split(":");
                             String date1 = parts[1];
@@ -173,7 +175,24 @@ public class Main5Activity extends AppCompatActivity {
                           //  Toast.makeText(Main5Activity.this, d2+"No one to send reminder"+d1, Toast.LENGTH_LONG).show();
 
                             if(d1.compareTo(d2) <= 0 || d1.compareTo(d2)==0) {
-
+                                int i=ContextCompat.checkSelfPermission(Main5Activity.this,
+                                        Manifest.permission.SEND_SMS);
+                                Toast.makeText(Main5Activity.this, "no Perm"+i,
+                                        Toast.LENGTH_LONG).show();
+Log.d("permission",""+i);
+//                                if (ContextCompat.checkSelfPermission(Main5Activity.this,
+//                                        Manifest.permission.SEND_SMS)
+//                                        != PackageManager.PERMISSION_GRANTED) {
+//                                    Toast.makeText(Main5Activity.this, "no Perm",
+//                                            Toast.LENGTH_LONG).show();
+//                                }
+//                                else
+//                                {
+//                                    Toast.makeText(Main5Activity.this, "Perm",
+//                                            Toast.LENGTH_LONG).show();
+//                                }
+                                SmsManager
+                                        sms = SmsManager.getDefault();
                                 sms.sendTextMessage("" + no, null, "SHRI SAI AUTOMOBILE\nYOUR bile service date is here", null, null);
                             } }
                         Toast.makeText(Main5Activity.this, "Message Sent successfully!",

@@ -22,13 +22,13 @@ public class ServiceViewActivity extends AppCompatActivity {
     SQLiteDatabase mydatabase;
     Button all;
     Intent i;
-
+    ArrayAdapter<svaview> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_view);
         this.setTitle("Active Service");
-        ArrayAdapter<svaview> adapter = new svaviewadaptor(this, 0, svalist);
+     adapter = new svaviewadaptor(this, 0, svalist);
         all = (Button) findViewById(R.id.sva_all);
         mydatabase = openOrCreateDatabase("service", MODE_PRIVATE, null);
         mydatabase.execSQL("CREATE TABLE IF NOT EXISTS service(vehicle VARCHAR,sdate VARCHAR,edate VARCHAR,bill VARCHAR,summary VARCHAR);");
@@ -37,34 +37,6 @@ public class ServiceViewActivity extends AppCompatActivity {
         // Toast.makeText(Main5Activity.this, mydatabase.getPath(), Toast.LENGTH_LONG).show();
 
 
-        resultSet = mydatabase.rawQuery("SELECT user.name, user.mobile, * \n" +
-                "FROM service\n" +
-                "INNER JOIN user ON service.vehicle = user.vehicle where service.edate=''", null);
-
-        try {
-
-            if (resultSet.moveToFirst()) {
-                do {
-                    String name = resultSet.getString(0);
-                    String mobile = resultSet.getString(1);
-                    String vehicle = resultSet.getString(2);
-                    String sdate = resultSet.getString(3);
-
-
-                    svalist.add(new svaview(sdate, name, mobile, vehicle));
-
-                } while (resultSet.moveToNext());
-            }
-        } catch (Exception e) {
-            Toast.makeText(ServiceViewActivity.this, "error" + e.getMessage(), Toast.LENGTH_LONG).show();
-
-        }
-//        vehlist.add(
-//                new vehicleview("bobby","7020724885","MH14FE6320","28-06-2019"));
-
-
-        ListView listView = (ListView) findViewById(R.id.sva_list);
-        listView.setAdapter(adapter);
 
 
 //set the listener to the list view
@@ -121,6 +93,39 @@ public class ServiceViewActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        svalist.clear();
+        resultSet = mydatabase.rawQuery("SELECT user.name, user.mobile, * \n" +
+                "FROM service\n" +
+                "INNER JOIN user ON service.vehicle = user.vehicle where service.edate=''", null);
 
+        try {
+
+            if (resultSet.moveToFirst()) {
+                do {
+                    String name = resultSet.getString(0);
+                    String mobile = resultSet.getString(1);
+                    String vehicle = resultSet.getString(2);
+                    String sdate = resultSet.getString(3);
+
+
+                    svalist.add(new svaview(sdate, name, mobile, vehicle));
+
+                } while (resultSet.moveToNext());
+            }
+        } catch (Exception e) {
+            Toast.makeText(ServiceViewActivity.this, "error" + e.getMessage(), Toast.LENGTH_LONG).show();
+
+        }
+//        vehlist.add(
+//                new vehicleview("bobby","7020724885","MH14FE6320","28-06-2019"));
+
+
+        ListView listView = (ListView) findViewById(R.id.sva_list);
+        listView.setAdapter(adapter);
+
+    }
 
 }
