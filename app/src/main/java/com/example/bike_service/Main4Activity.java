@@ -238,14 +238,7 @@ public class Main4Activity extends AppCompatActivity {
         {
             Toast.makeText(Main4Activity.this, ""+e.getMessage(), Toast.LENGTH_LONG).show();
         }
-        i=getIntent();
-        String no=i.getStringExtra("vehicle");
-    //    Toast.makeText(Main4Activity.this, "hello:" +no , Toast.LENGTH_LONG).show();
-        veh.setText(no);
-        if(!veh.getText().toString().isEmpty()){
 
-            search(v);
-        }
         }
     public void search(View v)
     {
@@ -344,4 +337,32 @@ public class Main4Activity extends AppCompatActivity {
         }
 
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+//        String vehicle=veh.getText().toString();
+//        if(!vehicle.isEmpty())
+//        {
+//
+//            resultSet = mydatabase.rawQuery("Select * from user where vehicle='" + vehicle.toString().toUpperCase() + "'", null);
+//            if (resultSet.getCount() != 0) {
+//
+//            }
+//        }
+
+        try {
+        i=getIntent();
+        String no=i.getStringExtra("vehicle");
+            Toast.makeText(Main4Activity.this, "nn", Toast.LENGTH_LONG).show();
+        //    Toast.makeText(Main4Activity.this, "hello:" +no , Toast.LENGTH_LONG).show();
+
+        if(!no.toString().isEmpty()){
+            veh.setText(no);
+            search(v);
+        }}catch(Exception e)
+    {
+       // Toast.makeText(Main4Activity.this, ""+e.getMessage(), Toast.LENGTH_LONG).show();
+    }
+    }
+
 }

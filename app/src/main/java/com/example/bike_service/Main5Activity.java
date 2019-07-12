@@ -34,7 +34,7 @@ public class Main5Activity extends AppCompatActivity {
     Calendar cal2 ;
     String newDate ;
     Date d2 ;
-
+    ArrayAdapter<vehicleview> adapter;
     Date d1;
     String oldDate;
     @Override
@@ -42,7 +42,7 @@ public class Main5Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main5);
         this.setTitle("Active Reminders");
-        ArrayAdapter<vehicleview> adapter = new ListViewAdapter(this, 0, vehlist);
+        adapter = new ListViewAdapter(this, 0, vehlist);
         all=(Button)findViewById(R.id.all);
         mydatabase = openOrCreateDatabase("service", MODE_PRIVATE, null);
         mydatabase.execSQL("CREATE TABLE IF NOT EXISTS rem(vehicle VARCHAR,date VARCHAR,sn VARCHAR(20));");
@@ -51,47 +51,47 @@ public class Main5Activity extends AppCompatActivity {
        // Toast.makeText(Main5Activity.this, mydatabase.getPath(), Toast.LENGTH_LONG).show();
 
 
-        resultSet = mydatabase.rawQuery("SELECT user.name, user.mobile, user.vehicle, rem.date \n" +
-                "FROM user\n" +
-                "INNER JOIN rem ON user.vehicle = rem.vehicle ",null);
-        try {
-           sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Calendar cal1 = Calendar.getInstance();
-            Calendar cal2 = Calendar.getInstance();
-            String newDate = sdf.format(cal2.getTime());
-            d2 = sdf.parse(newDate);
-
-            Date d1;
-            String oldDate;
-          //  Toast.makeText(Main5Activity.this, cal1+"/"+cal2, Toast.LENGTH_LONG).show();
-
-            if (resultSet.moveToFirst()) {
-                do {
-                    // Passing values
-                    String name = resultSet.getString(0);
-                    String mobile = resultSet.getString(1);
-                    String vehicle = resultSet.getString(2);
-                    String date = resultSet.getString(3);
-
-                    //d1 = sdf.parse(date);
-                    d1=new SimpleDateFormat("dd-MM-yyyy").parse(date);
-                    //Toast.makeText(Main5Activity.this, cal1+"/"+cal2, Toast.LENGTH_LONG).show();
-
-
-                   // Toast.makeText(Main5Activity.this, d2+"No one to send reminder"+d1, Toast.LENGTH_LONG).show();
-
-                    if(d1.compareTo(d2) <= 0 || d1.compareTo(d2)==0) {
-
-                        vehlist.add(
-                            new vehicleview(name, mobile, vehicle, date));}
-                } while (resultSet.moveToNext());
-            }
-        }
-        catch(Exception e)
-        {
-            Toast.makeText(Main5Activity.this, "error"+e.getMessage(), Toast.LENGTH_LONG).show();
-
-        }
+//        resultSet = mydatabase.rawQuery("SELECT user.name, user.mobile, user.vehicle, rem.date \n" +
+//                "FROM user\n" +
+//                "INNER JOIN rem ON user.vehicle = rem.vehicle ",null);
+//        try {
+//           sdf = new SimpleDateFormat("yyyy-MM-dd");
+//            Calendar cal1 = Calendar.getInstance();
+//            Calendar cal2 = Calendar.getInstance();
+//            String newDate = sdf.format(cal2.getTime());
+//            d2 = sdf.parse(newDate);
+//
+//            Date d1;
+//            String oldDate;
+//          //  Toast.makeText(Main5Activity.this, cal1+"/"+cal2, Toast.LENGTH_LONG).show();
+//
+//            if (resultSet.moveToFirst()) {
+//                do {
+//                    // Passing values
+//                    String name = resultSet.getString(0);
+//                    String mobile = resultSet.getString(1);
+//                    String vehicle = resultSet.getString(2);
+//                    String date = resultSet.getString(3);
+//
+//                    //d1 = sdf.parse(date);
+//                    d1=new SimpleDateFormat("dd-MM-yyyy").parse(date);
+//                    //Toast.makeText(Main5Activity.this, cal1+"/"+cal2, Toast.LENGTH_LONG).show();
+//
+//
+//                   // Toast.makeText(Main5Activity.this, d2+"No one to send reminder"+d1, Toast.LENGTH_LONG).show();
+//
+//                    if(d1.compareTo(d2) <= 0 || d1.compareTo(d2)==0) {
+//
+//                        vehlist.add(
+//                            new vehicleview(name, mobile, vehicle, date));}
+//                } while (resultSet.moveToNext());
+//            }
+//        }
+//        catch(Exception e)
+//        {
+//            Toast.makeText(Main5Activity.this, "error"+e.getMessage(), Toast.LENGTH_LONG).show();
+//
+//        }
 //        vehlist.add(
 //                new vehicleview("bobby","7020724885","MH14FE6320","28-06-2019"));
 
@@ -195,4 +195,59 @@ public class Main5Activity extends AppCompatActivity {
 
         });
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        vehlist.clear();
+        resultSet = mydatabase.rawQuery("SELECT user.name, user.mobile, user.vehicle, rem.date \n" +
+                "FROM user\n" +
+                "INNER JOIN rem ON user.vehicle = rem.vehicle ",null);
+        try {
+            sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Calendar cal1 = Calendar.getInstance();
+            Calendar cal2 = Calendar.getInstance();
+            String newDate = sdf.format(cal2.getTime());
+            d2 = sdf.parse(newDate);
+
+            Date d1;
+            String oldDate;
+            //  Toast.makeText(Main5Activity.this, cal1+"/"+cal2, Toast.LENGTH_LONG).show();
+
+            if (resultSet.moveToFirst()) {
+                do {
+                    // Passing values
+                    String name = resultSet.getString(0);
+                    String mobile = resultSet.getString(1);
+                    String vehicle = resultSet.getString(2);
+                    String date = resultSet.getString(3);
+
+                    //d1 = sdf.parse(date);
+                    d1=new SimpleDateFormat("dd-MM-yyyy").parse(date);
+                    //Toast.makeText(Main5Activity.this, cal1+"/"+cal2, Toast.LENGTH_LONG).show();
+
+
+                    // Toast.makeText(Main5Activity.this, d2+"No one to send reminder"+d1, Toast.LENGTH_LONG).show();
+
+                    if(d1.compareTo(d2) <= 0 || d1.compareTo(d2)==0) {
+
+                        vehlist.add(
+                                new vehicleview(name, mobile, vehicle, date));}
+                } while (resultSet.moveToNext());
+            }
+        }
+        catch(Exception e)
+        {
+            Toast.makeText(Main5Activity.this, "error"+e.getMessage(), Toast.LENGTH_LONG).show();
+
+        }
+//        vehlist.add(
+//                new vehicleview("bobby","7020724885","MH14FE6320","28-06-2019"));
+
+
+
+        ListView listView = (ListView) findViewById(R.id.list);
+        listView.setAdapter(adapter);
+
+    }
+
 }

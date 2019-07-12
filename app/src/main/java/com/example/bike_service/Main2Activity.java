@@ -20,27 +20,23 @@ public class Main2Activity extends AppCompatActivity {
     private PendingIntent pendingIntent;
     private AlarmManager manager;
     SharedPreferences prf;
+    private static long back_pressed;
+    @Override
+    public void onBackPressed()
 
+    {
 
-//    @Override
-//    public void onBackPressed()
-//
-//    {
-//        Toast.makeText(this, "No exit!", Toast.LENGTH_SHORT).show();
-//
-//        Intent i = new Intent(this, Main2Activity.class);
-//
-//        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//        this.startActivity(i);
-//    }
+      if (back_pressed + 2000 > System.currentTimeMillis()) finish();
+        else Toast.makeText(getBaseContext(), "Press once again to exit!", Toast.LENGTH_SHORT).show();
+        back_pressed = System.currentTimeMillis();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         this.setTitle("Menu");
         prf = getSharedPreferences("login",MODE_PRIVATE);
+        Toast.makeText(Main2Activity.this,"Main2Activity.this onCreate invoked",Toast.LENGTH_LONG).show();
 
 //        Intent alarmIntent = new Intent(this, BootCompletedIntentReceiver.class);
 //        pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
@@ -114,8 +110,9 @@ public class Main2Activity extends AppCompatActivity {
         editor.apply();
         i = new Intent(Main2Activity.this, MainActivity.class);
         // i.putExtra("user",user.getText().toString().toUpperCase());
-        finish();
+
         startActivity(i);
+        finish();
     }
     public void contact(View v)
     {
@@ -136,6 +133,42 @@ public class Main2Activity extends AppCompatActivity {
         // i.putExtra("user",user.getText().toString().toUpperCase());
         startActivity(i);
     }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        Toast.makeText(Main2Activity.this,"Main2Activity.this onStart invoked",Toast.LENGTH_LONG).show();
+//
+//    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        Toast.makeText(Main2Activity.this,"Main2Activity onResume invoked",Toast.LENGTH_LONG).show();
+//
+//    }
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        Toast.makeText(Main2Activity.this,"Main2Activity onPause invoked",Toast.LENGTH_LONG).show();
+//
+//    }
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        Toast.makeText(Main2Activity.this,"Main2Activity onStop invoked",Toast.LENGTH_LONG).show();
+//
+//    }
+//    @Override
+//    protected void onRestart() {
+//        super.onRestart();
+//        Toast.makeText(Main2Activity.this,"Main2Activity onRestart invoked",Toast.LENGTH_LONG).show();
+//
+//    }
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        Toast.makeText(Main2Activity.this,"Main2Activity onDestroy invoked",Toast.LENGTH_LONG).show();
+//
+//    }
 }
 
 

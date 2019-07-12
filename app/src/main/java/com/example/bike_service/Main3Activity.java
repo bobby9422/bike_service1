@@ -109,6 +109,7 @@ public class Main3Activity extends AppCompatActivity {
             try {
                 mydatabase.execSQL("INSERT INTO user VALUES('" + veh.getText().toString().toUpperCase() + "','" + mod.getText().toString() + "','" + name.getText().toString() + "','" + mob.getText().toString() + "','" + email.getText().toString() + "');");
                 Toast.makeText(Main3Activity.this, "Added Successfully", Toast.LENGTH_LONG).show();
+
                 finish();
             } catch (Exception e) {
                 Toast.makeText(Main3Activity.this, "error" + e.getMessage(), Toast.LENGTH_LONG).show();

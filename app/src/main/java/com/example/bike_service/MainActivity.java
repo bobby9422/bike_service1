@@ -13,22 +13,20 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 EditText user,pass;
 Button b1,b2;
+View v;
     SharedPreferences sharedpreferences;
     SharedPreferences.Editor editor;
     SharedPreferences prf;
     Boolean doubleBackToExitPressedOnce=false;
-//    @Override
-//    public void onBackPressed() {
-//        Toast.makeText(this, "No exit!", Toast.LENGTH_SHORT).show();
-//
-//        Intent i = new Intent(this, MainActivity.class);
-//
-//        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//        this.startActivity(i);
-//
-//    }
+    private static long back_pressed;
+    @Override
+    public void onBackPressed() {
+
+      if (back_pressed + 2000 > System.currentTimeMillis()) finish();
+        else Toast.makeText(getBaseContext(), "Press once again to exit!", Toast.LENGTH_SHORT).show();
+        back_pressed = System.currentTimeMillis();
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +37,8 @@ Button b1,b2;
         user=(EditText)findViewById(R.id.editText);
         pass=(EditText)findViewById(R.id.editText2);
         b1=(Button)findViewById(R.id.button);
+        Toast.makeText(MainActivity.this,"MainActivity.this onCreate invoked",Toast.LENGTH_LONG).show();
+
         if(sharedpreferences.contains("user") && sharedpreferences.contains("pass")){
             if((sharedpreferences.getString("user","null").equalsIgnoreCase("bobby")) && (sharedpreferences.getString("pass","null").equals("login"))) {
 //                Toast.makeText(MainActivity.this, "user:" + sharedpreferences.getString("user", "null")
@@ -48,8 +48,9 @@ Button b1,b2;
                 Intent i = new Intent(MainActivity.this, Main2Activity.class);
                 // i.putExtra("user",user.getText().toString().toUpperCase());
 
-                finish();
+
                 startActivity(i);
+                finish();
             }
         }
         b1.setOnClickListener(new  View.OnClickListener() {
@@ -66,7 +67,9 @@ Button b1,b2;
                     Intent i = new Intent(MainActivity.this, Main2Activity.class);
                    // i.putExtra("user",user.getText().toString().toUpperCase());
                     startActivity(i);
-
+                    user.setText("");
+                    pass.setText("");
+                    finish();
                 }
                 else
                 {
@@ -84,4 +87,40 @@ Button b1,b2;
         pass.setText("");
         Toast.makeText(MainActivity.this,"Login again!",Toast.LENGTH_LONG).show();
     }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        Toast.makeText(MainActivity.this,"MainActivity.this onStart invoked",Toast.LENGTH_LONG).show();
+//
+//    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        Toast.makeText(MainActivity.this,"MainActivity onResume invoked",Toast.LENGTH_LONG).show();
+//
+//    }
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        Toast.makeText(MainActivity.this,"MainActivity onPause invoked",Toast.LENGTH_LONG).show();
+//
+//    }
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        Toast.makeText(MainActivity.this,"MainActivity onStop invoked",Toast.LENGTH_LONG).show();
+//
+//    }
+//    @Override
+//    protected void onRestart() {
+//        super.onRestart();
+//        Toast.makeText(MainActivity.this,"MainActivity onRestart invoked",Toast.LENGTH_LONG).show();
+//
+//    }
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        Toast.makeText(MainActivity.this,"MainActivity onDestroy invoked",Toast.LENGTH_LONG).show();
+//
+//    }
 }
