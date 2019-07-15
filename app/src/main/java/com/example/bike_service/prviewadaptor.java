@@ -3,6 +3,7 @@ package com.example.bike_service;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class prviewadaptor extends ArrayAdapter<prview> {
-
+    SharedPreferences sharedpreferences;
     Cursor resultSet;
     SQLiteDatabase mydatabase;
     Intent i;
@@ -32,7 +33,7 @@ public class prviewadaptor extends ArrayAdapter<prview> {
 
     //called when rendering the list
     public View getView(final int position, final View convertView, final ViewGroup parent) {
-
+        sharedpreferences = context.getSharedPreferences("login", Context.MODE_PRIVATE);
         //get the property we are displaying
         prview prviewlist = prlist.get(position);
 

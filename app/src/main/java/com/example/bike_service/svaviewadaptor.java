@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class svaviewadaptor extends ArrayAdapter<svaview> {
+    SharedPreferences sharedpreferences;
     Cursor resultSet;
     SQLiteDatabase mydatabase;
     Intent i;
@@ -36,7 +38,7 @@ public class svaviewadaptor extends ArrayAdapter<svaview> {
 
     //called when rendering the list
     public View getView(final int position, final View convertView, final ViewGroup parent) {
-
+        sharedpreferences = context.getSharedPreferences("login", Context.MODE_PRIVATE);
     //get the property we are displaying
     svaview svaviewlist = svalist.get(position);
 
@@ -104,7 +106,7 @@ public class svaviewadaptor extends ArrayAdapter<svaview> {
 //                    Toast.makeText(context, "!"+vehicle1.getText().toString().toUpperCase()+"pp",
 //                            Toast.LENGTH_LONG).show();
 //                    Log.d("android","vehicle:"+vehicle1.getText().toString().toUpperCase());
-                    mydatabase.execSQL("DELETE FROM service WHERE vehicle='" + svalist.get(position).getVehicle().toString().toUpperCase() + "' and edate = ''");
+                    mydatabase.execSQL("DELETE FROM service WHERE id='"+sharedpreferences.getString("id",null)+"' and vehicle='" + svalist.get(position).getVehicle().toString().toUpperCase() + "' and edate = ''");
                     Toast.makeText(context, "Deleted!",
                             Toast.LENGTH_LONG).show();
                     mydatabase.close();

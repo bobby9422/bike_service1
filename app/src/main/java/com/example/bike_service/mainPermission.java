@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 public class mainPermission {
 
-int a=200;
+int a=200,b=300;
     public boolean checkPerm(Activity act)
     {
         if (ContextCompat.checkSelfPermission(act,
@@ -24,9 +24,26 @@ int a=200;
 
             ActivityCompat.requestPermissions(act,new String[]{Manifest.permission.SEND_SMS},a);
 
-            Toast.makeText(act, "no Perm"+a,
-                    Toast.LENGTH_LONG).show();
+//                Toast.LENGTH_LONG).show();
 return false;
+        }
+        else
+        {
+            return true;
+        }
+
+
+    }
+    public boolean checkPermCall(Activity act)
+    {
+        if (ContextCompat.checkSelfPermission(act,
+                Manifest.permission.CALL_PHONE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(act,new String[]{Manifest.permission.SEND_SMS},b);
+
+            //      Toast.LENGTH_LONG).show();
+            return false;
         }
         else
         {

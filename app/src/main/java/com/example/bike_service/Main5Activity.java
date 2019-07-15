@@ -3,7 +3,9 @@ package com.example.bike_service;
 import android.Manifest;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -29,6 +31,7 @@ import java.util.Date;
 
 public class Main5Activity extends AppCompatActivity {
     private ArrayList<vehicleview> vehlist = new ArrayList<>();
+    SharedPreferences sharedpreferences;
     Cursor resultSet;
     SQLiteDatabase mydatabase;
     Button all;
@@ -47,11 +50,12 @@ public class Main5Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main5);
         this.setTitle("Active Reminders");
+        sharedpreferences = getSharedPreferences("login", this.MODE_PRIVATE);
         adapter = new ListViewAdapter(this, 0, vehlist);
         all=(Button)findViewById(R.id.all);
         mydatabase = openOrCreateDatabase("service", MODE_PRIVATE, null);
-        mydatabase.execSQL("CREATE TABLE IF NOT EXISTS rem(vehicle VARCHAR,date VARCHAR,sn VARCHAR(20));");
-        mydatabase.execSQL("CREATE TABLE IF NOT EXISTS user(vehicle VARCHAR,model VARCHAR,name VARCHAR,mobile VARCHAR,email VARCHAR);");
+        mydatabase.execSQL("CREATE TABLE IF NOT EXISTS rem(vehicle VARCHAR,date VARCHAR,sn VARCHAR(20),id VARCHAR);");
+        mydatabase.execSQL("CREATE TABLE IF NOT EXISTS user(vehicle VARCHAR,model VARCHAR,name VARCHAR,mobile VARCHAR,email VARCHAR,id VARCHAR);");
         Log.d("ppath","path"+mydatabase.getPath());
        // Toast.makeText(Main5Activity.this, mydatabase.getPath(), Toast.LENGTH_LONG).show();
 
@@ -153,7 +157,7 @@ public class Main5Activity extends AppCompatActivity {
         vehlist.clear();
         resultSet = mydatabase.rawQuery("SELECT user.name, user.mobile, user.vehicle, rem.date \n" +
                 "FROM user\n" +
-                "INNER JOIN rem ON user.vehicle = rem.vehicle ",null);
+                "INNER JOIN rem ON user.vehicle = rem.vehicle where user.id='"+sharedpreferences.getString("id",null)+"'",null);
         try {
             sdf = new SimpleDateFormat("yyyy-MM-dd");
             Calendar cal1 = Calendar.getInstance();
@@ -222,13 +226,13 @@ public class Main5Activity extends AppCompatActivity {
     {
         try {
 
-            Toast.makeText(Main5Activity.this, "From 5",
-                    Toast.LENGTH_LONG).show();
-            mydatabase.execSQL("CREATE TABLE IF NOT EXISTS rem(vehicle VARCHAR,date VARCHAR,sn VARCHAR(20));");
-            mydatabase.execSQL("CREATE TABLE IF NOT EXISTS user(vehicle VARCHAR,model VARCHAR,name VARCHAR,mobile VARCHAR,email VARCHAR);");
+          //  Toast.makeText(Main5Activity.this, "From 5",
+            //        Toast.LENGTH_LONG).show();
+            mydatabase.execSQL("CREATE TABLE IF NOT EXISTS rem(vehicle VARCHAR,date VARCHAR,sn VARCHAR(20),id VARCHAR);");
+            mydatabase.execSQL("CREATE TABLE IF NOT EXISTS user(vehicle VARCHAR,model VARCHAR,name VARCHAR,mobile VARCHAR,email VARCHAR,id VARCHAR);");
             resultSet = mydatabase.rawQuery("SELECT user.mobile,rem.date \n" +
                     "FROM user\n" +
-                    "INNER JOIN rem ON user.vehicle = rem.vehicle ", null);
+                    "INNER JOIN rem ON user.vehicle = rem.vehicle where id='"+sharedpreferences.getString("id",null)+"' ", null);
             amobile = new ArrayList<String>();
             //String[] amobile={""};int i=0;
             if (resultSet.getCount() > 0) {

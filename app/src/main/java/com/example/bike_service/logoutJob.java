@@ -41,7 +41,7 @@ mydatabase.close();
 
         @Override
         public boolean onStopJob(JobParameters jobParameters) {
-            Toast.makeText(logoutJob.this,"logoutstop",Toast.LENGTH_LONG).show();
+           // Toast.makeText(logoutJob.this,"logoutstop",Toast.LENGTH_LONG).show();
 
             return false;
         }

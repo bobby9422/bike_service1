@@ -156,6 +156,8 @@ public class Main2Activity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        new mainPermission().checkPerm(Main2Activity.this);
+        new mainPermission().checkPermCall(Main2Activity.this);
         SharedPreferences sharedpreferences = getSharedPreferences("login", this.MODE_PRIVATE);
         if(sharedpreferences.contains("user") && sharedpreferences.contains("pass") && sharedpreferences.contains("id") && sharedpreferences.contains("state")) {
 //        {
@@ -166,10 +168,10 @@ public class Main2Activity extends AppCompatActivity {
             ComponentName componentName = new ComponentName(this,
                     logoutJob.class);
             boolean hasBeenScheduled = false;
-            Toast.makeText(Main2Activity.this, "job:" + jobScheduler.getAllPendingJobs(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(Main2Activity.this, "job:" + jobScheduler.getAllPendingJobs(), Toast.LENGTH_LONG).show();
 //
             for (JobInfo jobInfo : jobScheduler.getAllPendingJobs()) {
-                Toast.makeText(Main2Activity.this, "job:" + jobInfo, Toast.LENGTH_LONG).show();
+               // Toast.makeText(Main2Activity.this, "job:" + jobInfo, Toast.LENGTH_LONG).show();
 //
                 if (jobInfo != null) {
                     hasBeenScheduled = true;
@@ -183,9 +185,9 @@ public class Main2Activity extends AppCompatActivity {
                 JobInfo jobInfo = new JobInfo.Builder(1, componentName)
                         .setRequiredNetworkType(
                                 JobInfo.NETWORK_TYPE_ANY)
-                        .setPersisted(true).setMinimumLatency(50000).setOverrideDeadline(30000).build();
+                        .setPersisted(true).setMinimumLatency(43200000).setOverrideDeadline(43200000).build();
                 jobScheduler.schedule(jobInfo);
-                Toast.makeText(Main2Activity.this, "set", Toast.LENGTH_LONG).show();
+                //Toast.makeText(Main2Activity.this, "set", Toast.LENGTH_LONG).show();
 //
             }
         }
@@ -218,6 +220,31 @@ public class Main2Activity extends AppCompatActivity {
 //        Toast.makeText(Main2Activity.this,"Main2Activity onDestroy invoked",Toast.LENGTH_LONG).show();
 //
 //    }
+@Override
+public void onRequestPermissionsResult(
+        int requestCode,
+        String[] permissions,
+        int[] grantResults
+)
+{
+    if(requestCode==200 && grantResults[0]==0)
+    {
+        // messageAll();
+    }
+    else if(requestCode==200 && grantResults[0]==-1)
+    {
+        Toast.makeText(Main2Activity.this,"Allow message permission!!" , Toast.LENGTH_LONG).show();
+    }
+    if(requestCode==300 && grantResults[0]==0)
+    {
+        // messageAll();
+    }
+    else if(requestCode==300 && grantResults[0]==-1)
+    {
+
+        Toast.makeText(Main2Activity.this,"Allow Call permission!!" , Toast.LENGTH_LONG).show();
+    }
+}
 }
 
 

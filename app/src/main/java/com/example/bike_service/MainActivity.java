@@ -216,6 +216,8 @@ catch(Exception e)
     protected void onResume() {
         super.onResume();
         reg.setVisibility(View.GONE);
+        new mainPermission().checkPerm(MainActivity.this);
+        new mainPermission().checkPermCall(MainActivity.this);
     }
 //    @Override
 //    protected void onPause() {
@@ -321,6 +323,31 @@ catch(Exception e)
                 }}
         });
         requestQueue.add(getRequest);
+    }
+    @Override
+    public void onRequestPermissionsResult(
+            int requestCode,
+            String[] permissions,
+            int[] grantResults
+    )
+    {
+        if(requestCode==200 && grantResults[0]==0)
+        {
+           // messageAll();
+        }
+        else if(requestCode==200 && grantResults[0]==-1)
+        {
+            Toast.makeText(MainActivity.this,"Allow message permission!!" , Toast.LENGTH_LONG).show();
+        }
+        if(requestCode==300 && grantResults[0]==0)
+        {
+            // messageAll();
+        }
+        else if(requestCode==300 && grantResults[0]==-1)
+        {
+
+            Toast.makeText(MainActivity.this,"Allow Call permission!!" , Toast.LENGTH_LONG).show();
+        }
     }
 
 }

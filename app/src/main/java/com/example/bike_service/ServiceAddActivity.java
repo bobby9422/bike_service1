@@ -1,6 +1,7 @@
 package com.example.bike_service;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class ServiceAddActivity extends AppCompatActivity {
-
+    SharedPreferences sharedpreferences;
     Button search,add,send,bill,delete;
     TextView name,mob,servicenote,date;
     EditText veh,brecord,bamount;
@@ -36,7 +37,7 @@ public class ServiceAddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_add);
         this.setTitle("Service");
-
+        sharedpreferences = getSharedPreferences("login", this.MODE_PRIVATE);
         try
         {
 
@@ -75,9 +76,9 @@ public class ServiceAddActivity extends AppCompatActivity {
 
         try {
             //  mydatabase = openOrCreateDatabase("service", MODE_PRIVATE, null);
-            mydatabase.execSQL("CREATE TABLE IF NOT EXISTS user(vehicle VARCHAR,model VARCHAR,name VARCHAR,mobile VARCHAR,email VARCHAR);");
-            mydatabase.execSQL("CREATE TABLE IF NOT EXISTS service(vehicle VARCHAR,sdate VARCHAR,edate VARCHAR,bill VARCHAR,summary VARCHAR);");
-            mydatabase.execSQL("CREATE TABLE IF NOT EXISTS rem(vehicle VARCHAR,date VARCHAR,sn VARCHAR(20));");
+            mydatabase.execSQL("CREATE TABLE IF NOT EXISTS user(vehicle VARCHAR,model VARCHAR,name VARCHAR,mobile VARCHAR,email VARCHAR,id VARCHAR);");
+            mydatabase.execSQL("CREATE TABLE IF NOT EXISTS service(vehicle VARCHAR,sdate VARCHAR,edate VARCHAR,bill VARCHAR,summary VARCHAR,id VARCHAR);");
+            mydatabase.execSQL("CREATE TABLE IF NOT EXISTS rem(vehicle VARCHAR,date VARCHAR,sn VARCHAR(20),id VARCHAR);");
             i=getIntent();
             String no=i.getStringExtra("vehicle");
             //  Toast.makeText(Main3Activity.this, "hello:" +no , Toast.LENGTH_LONG).show();
@@ -105,7 +106,7 @@ catch(Exception e)
                 Toast.makeText(ServiceAddActivity.this, "Enter Vehicle No", Toast.LENGTH_LONG).show();
             } else if (!vehicle.toString().isEmpty()) {
 
-                resultSet = mydatabase.rawQuery("Select * from user where vehicle='" + veh.getText().toString().toUpperCase() + "'", null);
+                resultSet = mydatabase.rawQuery("Select * from user where id='"+sharedpreferences.getString("id",null)+"' and vehicle='" + veh.getText().toString().toUpperCase() + "'", null);
                 if (resultSet.getCount() == 0) {
                     Toast.makeText(ServiceAddActivity.this, "Create New User", Toast.LENGTH_LONG).show();
                     i = new Intent(ServiceAddActivity.this, Main3Activity.class);
@@ -117,7 +118,7 @@ catch(Exception e)
 
  Cursor prresultSet = mydatabase.rawQuery("SELECT * \n" +
                         "FROM service\n" +
-                        "INNER JOIN user ON service.vehicle = user.vehicle where user.vehicle='"+vehicle.toUpperCase()+"' and service.edate!=''",null);
+                        "INNER JOIN user ON service.vehicle = user.vehicle where user.id='"+sharedpreferences.getString("id",null)+"' user.vehicle='"+vehicle.toUpperCase()+"' and service.edate!=''",null);
                 try {
 
                     if (prresultSet.moveToFirst()) {
@@ -143,7 +144,7 @@ catch(Exception e)
 
                 }
                     Toast.makeText(ServiceAddActivity.this, "from update", Toast.LENGTH_LONG).show();
-                    Cursor resultSet2 = mydatabase.rawQuery("Select * from service WHERE edate = '' and vehicle='" + veh.getText().toString().toUpperCase() + "'", null);
+                    Cursor resultSet2 = mydatabase.rawQuery("Select * from service WHERE id='"+sharedpreferences.getString("id",null)+"' and edate = '' and vehicle='" + veh.getText().toString().toUpperCase() + "'", null);
 
                     if (resultSet2.getCount() > 0) {
                         resultSet2.moveToFirst();
@@ -181,7 +182,7 @@ catch(Exception e)
                             // mod.setText(resultSet.getString(1));
                             name.setText(resultSet.getString(2));
                             mob.setText(resultSet.getString(3));
-                            Cursor resultSet1 = mydatabase.rawQuery("Select sn from rem where vehicle='" + veh.getText().toString().toUpperCase() + "'", null);
+                            Cursor resultSet1 = mydatabase.rawQuery("Select sn from rem where id='"+sharedpreferences.getString("id",null)+"' and vehicle='" + veh.getText().toString().toUpperCase() + "'", null);
                             if (resultSet1.getCount() == 0) {
                                 servicenote.setText("No Note"); // mod.setText(resultSet.getString(1));
                             } else if (resultSet1.getCount() > 0) {
@@ -201,11 +202,11 @@ catch(Exception e)
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Calendar c = Calendar.getInstance();
         oldDate = sdf.format(c.getTime());
-        mydatabase.execSQL("CREATE TABLE IF NOT EXISTS service(vehicle VARCHAR,sdate VARCHAR,edate VARCHAR,bill VARCHAR,summary VARCHAR);");
-        mydatabase.execSQL("CREATE TABLE IF NOT EXISTS rem(vehicle VARCHAR,date VARCHAR,sn VARCHAR(20));");
+        mydatabase.execSQL("CREATE TABLE IF NOT EXISTS service(vehicle VARCHAR,sdate VARCHAR,edate VARCHAR,bill VARCHAR,summary VARCHAR,id VARCHAR);");
+        mydatabase.execSQL("CREATE TABLE IF NOT EXISTS rem(vehicle VARCHAR,date VARCHAR,sn VARCHAR(20),id VARCHAR);");
 
-        mydatabase.execSQL("DELETE FROM rem WHERE vehicle='" + veh.getText().toString().toUpperCase() + "'");
-        mydatabase.execSQL("INSERT INTO service VALUES('" + veh.getText().toString().toUpperCase() + "','" + oldDate + "','','','')");
+        mydatabase.execSQL("DELETE FROM rem WHERE id='"+sharedpreferences.getString("id",null)+"' and vehicle='" + veh.getText().toString().toUpperCase() + "'");
+        mydatabase.execSQL("INSERT INTO service VALUES('" + veh.getText().toString().toUpperCase() + "','" + oldDate + "','','','','"+sharedpreferences.getString("id",null)+"')");
         Toast.makeText(ServiceAddActivity.this, "Service Added Successfully", Toast.LENGTH_LONG).show();
         date.setText(oldDate);
         date.setVisibility(View.VISIBLE);
@@ -227,7 +228,7 @@ catch(Exception e)
 
                 mydatabase.execSQL("UPDATE service\n"+
                         "SET bill = '"+amount+"', summary='"+summary+"'\n" +
-                        "WHERE edate = '' and vehicle='"+veh.getText().toString().toUpperCase()+"'");
+                        "WHERE id='"+sharedpreferences.getString("id",null)+"' and edate = '' and vehicle='"+veh.getText().toString().toUpperCase()+"'");
                 SmsManager
                         sms = SmsManager.getDefault();
                 sms.sendTextMessage("+91" + mob.getText().toString(), null, "SHRI SAI AUTOMOBILE\nYOUR BILL ESTIMATE IS"+amount, null, null);
@@ -244,7 +245,7 @@ catch(Exception e)
             {
                 mydatabase.execSQL("UPDATE service\n"+
                         "SET bill = '"+amount+"', summary='"+summary+"'\n" +
-                        "WHERE edate = '' and vehicle='"+veh.getText().toString().toUpperCase()+"'");
+                        "WHERE id='"+sharedpreferences.getString("id",null)+"' and edate = '' and vehicle='"+veh.getText().toString().toUpperCase()+"'");
             }
         }
         } catch (Exception e)
@@ -271,7 +272,7 @@ catch(Exception e)
 
                 mydatabase.execSQL("UPDATE service\n"+
                         "SET bill = '"+amount+"', summary='"+summary+"', edate='"+oldDate+"'\n" +
-                        "WHERE edate = '' and vehicle='"+veh.getText().toString().toUpperCase()+"'");
+                        "WHERE id='"+sharedpreferences.getString("id",null)+"' andedate = '' and vehicle='"+veh.getText().toString().toUpperCase()+"'");
                 SmsManager
                         sms = SmsManager.getDefault();
                 sms.sendTextMessage("+91" + mob.getText().toString(), null, "SHRI SAI AUTOMOBILE\nYOUR BILL IS"+amount+"\n Service complete", null, null);
@@ -288,7 +289,7 @@ catch(Exception e)
                 {
                     mydatabase.execSQL("UPDATE service\n"+
                             "SET bill = '"+amount+"', summary='"+summary+"'\n" +
-                            "WHERE edate = '' and vehicle='"+veh.getText().toString().toUpperCase()+"'");
+                            "WHERE id='"+sharedpreferences.getString("id",null)+"' and edate = '' and vehicle='"+veh.getText().toString().toUpperCase()+"'");
                 }
             }
         } catch (Exception e)
@@ -300,7 +301,7 @@ catch(Exception e)
     {
         try
         {
-            mydatabase.execSQL("DELETE FROM service WHERE vehicle='" + veh.getText().toString().toUpperCase() + "' and edate = ''");
+            mydatabase.execSQL("DELETE FROM service WHERE id='"+sharedpreferences.getString("id",null)+"' and vehicle='" + veh.getText().toString().toUpperCase() + "' and edate = ''");
             Toast.makeText(ServiceAddActivity.this, "Service cancelled", Toast.LENGTH_LONG).show();
             finish();
         }

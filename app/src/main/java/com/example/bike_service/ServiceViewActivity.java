@@ -1,6 +1,7 @@
 package com.example.bike_service;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 
 public class ServiceViewActivity extends AppCompatActivity {
     private ArrayList<svaview> svalist = new ArrayList<>();
+    SharedPreferences sharedpreferences;
     Cursor resultSet;
     SQLiteDatabase mydatabase;
     Button all;
@@ -28,11 +30,12 @@ public class ServiceViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_view);
         this.setTitle("Active Service");
+        sharedpreferences = getSharedPreferences("login", this.MODE_PRIVATE);
      adapter = new svaviewadaptor(this, 0, svalist);
         all = (Button) findViewById(R.id.sva_all);
         mydatabase = openOrCreateDatabase("service", MODE_PRIVATE, null);
-        mydatabase.execSQL("CREATE TABLE IF NOT EXISTS service(vehicle VARCHAR,sdate VARCHAR,edate VARCHAR,bill VARCHAR,summary VARCHAR);");
-        mydatabase.execSQL("CREATE TABLE IF NOT EXISTS user(vehicle VARCHAR,model VARCHAR,name VARCHAR,mobile VARCHAR,email VARCHAR);");
+        mydatabase.execSQL("CREATE TABLE IF NOT EXISTS service(vehicle VARCHAR,sdate VARCHAR,edate VARCHAR,bill VARCHAR,summary VARCHAR,id VARCHAR);");
+        mydatabase.execSQL("CREATE TABLE IF NOT EXISTS user(vehicle VARCHAR,model VARCHAR,name VARCHAR,mobile VARCHAR,email VARCHAR,id VARCHAR);");
         Log.d("ppath", "path" + mydatabase.getPath());
         // Toast.makeText(Main5Activity.this, mydatabase.getPath(), Toast.LENGTH_LONG).show();
 
@@ -49,10 +52,10 @@ public class ServiceViewActivity extends AppCompatActivity {
 
 
           //  mydatabase.execSQL("CREATE TABLE IF NOT EXISTS rem(vehicle VARCHAR,date VARCHAR,sn VARCHAR(20));");
-            mydatabase.execSQL("CREATE TABLE IF NOT EXISTS user(vehicle VARCHAR,model VARCHAR,name VARCHAR,mobile VARCHAR,email VARCHAR);");
+            mydatabase.execSQL("CREATE TABLE IF NOT EXISTS user(vehicle VARCHAR,model VARCHAR,name VARCHAR,mobile VARCHAR,email VARCHAR,id VARCHAR);");
             resultSet = mydatabase.rawQuery("SELECT user.mobile \n" +
                     "FROM service\n" +
-                    "INNER JOIN user ON service.vehicle = user.vehicle where service.edate=''", null);
+                    "INNER JOIN user ON service.vehicle = user.vehicle where user.id='"+sharedpreferences.getString("id",null)+"' and service.edate=''", null);
 
             ArrayList<String> amobile = new ArrayList<String>();
 
@@ -99,7 +102,7 @@ public class ServiceViewActivity extends AppCompatActivity {
         svalist.clear();
         resultSet = mydatabase.rawQuery("SELECT user.name, user.mobile, * \n" +
                 "FROM service\n" +
-                "INNER JOIN user ON service.vehicle = user.vehicle where service.edate=''", null);
+                "INNER JOIN user ON service.vehicle = user.vehicle where id='"+sharedpreferences.getString("id",null)+"' and service.edate=''", null);
 
         try {
 

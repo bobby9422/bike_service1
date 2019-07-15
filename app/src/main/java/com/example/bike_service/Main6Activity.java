@@ -1,6 +1,7 @@
 package com.example.bike_service;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -30,21 +31,22 @@ public class Main6Activity extends AppCompatActivity {
     Intent i;
     EditText search;
     ListView listView;
-
+    SharedPreferences sharedpreferences;
     ArrayAdapter<contactview> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main6);this.setTitle("Customer ");
+        sharedpreferences = getSharedPreferences("login", this.MODE_PRIVATE);
         adapter = new ContactViewAdapter(this, 0, conlist);
         all=(Button)findViewById(R.id.call);
         search=(EditText)findViewById(R.id.editText11);
         search.setVisibility(View.GONE);
         mydatabase = openOrCreateDatabase("service", MODE_PRIVATE, null);
-        mydatabase.execSQL("CREATE TABLE IF NOT EXISTS user(vehicle VARCHAR,model VARCHAR,name VARCHAR,mobile VARCHAR,email VARCHAR);");
+        mydatabase.execSQL("CREATE TABLE IF NOT EXISTS user(vehicle VARCHAR,model VARCHAR,name VARCHAR,mobile VARCHAR,email VARCHAR,id VARCHAR);");
         resultSet = mydatabase.rawQuery("SELECT user.name, user.mobile, user.vehicle \n" +
-                "FROM user",null);
+                "FROM user where id='"+sharedpreferences.getString("id",null)+"'",null);
         try {
             if (resultSet.moveToFirst()) {
                 do {
