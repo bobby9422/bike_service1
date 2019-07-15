@@ -4,7 +4,8 @@
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -16,21 +17,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Main6Activity"></activity>
+        <activity android:name=".register"></activity>
+        <activity android:name=".Main6Activity" />
+        <service android:name=".logoutJob"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            ></service>
 
-        <receiver android:name=".BootCompletedIntentReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
 
         <service
             android:name=".BikeService"
             android:enabled="true"
             android:exported="true" />
-        <activity android:name=".ServiceViewActivity"></activity>
-        <activity android:name=".ServiceAddActivity" />
 
+        <activity android:name=".ServiceViewActivity" />
+        <activity android:name=".ServiceAddActivity" />
         <activity android:name=".Main5Activity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />

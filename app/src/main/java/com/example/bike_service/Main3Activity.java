@@ -1,6 +1,8 @@
 package com.example.bike_service;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +20,7 @@ public class Main3Activity extends AppCompatActivity {
     String vehicle,model,name1,mobile,email1;
    Intent i;
     View v;
+    SharedPreferences sharedpreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +44,10 @@ public class Main3Activity extends AppCompatActivity {
         up.setVisibility(View.GONE);
         search.setVisibility(View.VISIBLE);
         veh.setEnabled(true);
+        sharedpreferences = getSharedPreferences("login", this.MODE_PRIVATE);
         mydatabase = openOrCreateDatabase("service", MODE_PRIVATE, null);
-        mydatabase.execSQL("CREATE TABLE IF NOT EXISTS user(vehicle VARCHAR,model VARCHAR,name VARCHAR,mobile VARCHAR,email VARCHAR);");
-        resultSet = mydatabase.rawQuery("Select * from user", null);
+        mydatabase.execSQL("CREATE TABLE IF NOT EXISTS user(vehicle VARCHAR,model VARCHAR,name VARCHAR,mobile VARCHAR,email VARCHAR,id VARCHAR);");
+        resultSet = mydatabase.rawQuery("Select * from user where id='"+sharedpreferences.getString("id","null")+"'", null);
 
         if (resultSet.getCount() == 0) {
            // Toast.makeText(Main3Activity.this, "" + resultSet.getCount(), Toast.LENGTH_LONG).show();
@@ -66,7 +70,7 @@ public class Main3Activity extends AppCompatActivity {
         if (vehicle.isEmpty()) {
             Toast.makeText(Main3Activity.this, "Enter Vehicle No", Toast.LENGTH_LONG).show();
         } else if (!veh.getText().toString().isEmpty()) {
-            resultSet = mydatabase.rawQuery("Select * from user where vehicle='" + veh.getText().toString().toUpperCase() + "'", null);
+            resultSet = mydatabase.rawQuery("Select * from user where id='"+sharedpreferences.getString("id",null)+"' and vehicle='" + veh.getText().toString().toUpperCase() + "'", null);
             if (resultSet.getCount() == 0) {
                 Toast.makeText(Main3Activity.this, "No User Found", Toast.LENGTH_LONG).show();
                 veh.setEnabled(false);
@@ -107,7 +111,7 @@ public class Main3Activity extends AppCompatActivity {
 
         } else {
             try {
-                mydatabase.execSQL("INSERT INTO user VALUES('" + veh.getText().toString().toUpperCase() + "','" + mod.getText().toString() + "','" + name.getText().toString() + "','" + mob.getText().toString() + "','" + email.getText().toString() + "');");
+                mydatabase.execSQL("INSERT INTO user VALUES('" + veh.getText().toString().toUpperCase() + "','" + mod.getText().toString() + "','" + name.getText().toString() + "','" + mob.getText().toString() + "','" + email.getText().toString() + "','"+sharedpreferences.getString("id",null)+"');");
                 Toast.makeText(Main3Activity.this, "Added Successfully", Toast.LENGTH_LONG).show();
 
                 finish();
@@ -130,7 +134,7 @@ public class Main3Activity extends AppCompatActivity {
             try {
                 mydatabase.execSQL("UPDATE user\n"+
                         "SET model = '"+model+"', mobile='"+mobile+"', email='"+email1+"', name= '"+name1+"'\n" +
-                        "WHERE vehicle = '"+vehicle+"'");
+                        "WHERE vehicle = '"+vehicle+"' and id='"+sharedpreferences.getString("id",null)+"'");
                 Toast.makeText(Main3Activity.this, "Updated Successfully", Toast.LENGTH_LONG).show();
                 finish();
             } catch (Exception e) {

@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -28,7 +29,8 @@ import android.widget.Toast;
 
     public class ListViewAdapter extends ArrayAdapter<vehicleview> implements  ActivityCompat.OnRequestPermissionsResultCallback{
 
-
+        SharedPreferences sharedpreferences;
+        SharedPreferences.Editor editor;
     SQLiteDatabase mydatabase;
     Intent i;
     private Context context;
@@ -52,6 +54,8 @@ import android.widget.Toast;
     //called when rendering the list
     public View getView(final int position,final View convertView, final ViewGroup parent) {
 
+        sharedpreferences = context.getSharedPreferences("login",Context.MODE_PRIVATE);
+        editor = sharedpreferences.edit();
         //get the property we are displaying
         vehicleview vehviewlist = vehlist.get(position);
 
@@ -169,7 +173,8 @@ import android.widget.Toast;
                //     Toast.makeText(context, ""+vno,
                  //           Toast.LENGTH_LONG).show();
                     mydatabase = context.openOrCreateDatabase("service", Context.MODE_PRIVATE, null);
-                    mydatabase.execSQL("DELETE FROM rem WHERE vehicle='" + vno.toString().toUpperCase() + "'");
+                    mydatabase.execSQL("DELETE FROM rem WHERE vehicle='" + vno.toString().toUpperCase() + "' and id='"+sharedpreferences.getString("id","null")+"'");
+
                     Toast.makeText(context, "Deleted!",
                             Toast.LENGTH_LONG).show();
                     ((Main5Activity)context).finish();

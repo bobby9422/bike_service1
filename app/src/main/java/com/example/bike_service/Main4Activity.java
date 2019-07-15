@@ -1,6 +1,7 @@
 package com.example.bike_service;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +34,7 @@ public class Main4Activity extends AppCompatActivity {
     RadioButton r1,r2;
     Intent i;
     View v;
+    SharedPreferences sharedpreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +71,7 @@ public class Main4Activity extends AppCompatActivity {
         day1.setVisibility(View.GONE);
         rg.setVisibility(View.GONE);
         cancel.setVisibility(View.VISIBLE);
-
+        sharedpreferences = getSharedPreferences("login", this.MODE_PRIVATE);
         Log.d("myTag", mydatabase.getPath());
 
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
@@ -232,7 +234,7 @@ public class Main4Activity extends AppCompatActivity {
 
         try {
           //  mydatabase = openOrCreateDatabase("service", MODE_PRIVATE, null);
-            mydatabase.execSQL("CREATE TABLE IF NOT EXISTS user(vehicle VARCHAR,model VARCHAR,name VARCHAR,mobile VARCHAR,email VARCHAR);");
+            mydatabase.execSQL("CREATE TABLE IF NOT EXISTS user(vehicle VARCHAR,model VARCHAR,name VARCHAR,mobile VARCHAR,email VARCHAR,id VARCHAR);");
         }
         catch(Exception e)
         {
@@ -249,7 +251,7 @@ public class Main4Activity extends AppCompatActivity {
         } else if (!vehicle.toString().isEmpty()) {
            // Toast.makeText(Main4Activity.this, "veh:"+vehicle+":", Toast.LENGTH_LONG).show();
             Log.d("vehicle","veh:"+vehicle+":");
-            resultSet = mydatabase.rawQuery("Select * from user where vehicle='" + vehicle.toString().toUpperCase() + "'", null);
+            resultSet = mydatabase.rawQuery("Select * from user where id='"+sharedpreferences.getString("id",null)+"' andvehicle='" + vehicle.toString().toUpperCase() + "'", null);
             if (resultSet.getCount() == 0) {
               //  Toast.makeText(Main4Activity.this, "Create New User", Toast.LENGTH_LONG).show();
                 i = new Intent(Main4Activity.this, Main3Activity.class);
@@ -324,9 +326,9 @@ public class Main4Activity extends AppCompatActivity {
         String newDate = sdf.format(c.getTime());
         Log.d("Date",""+newDate);
         try {
-            mydatabase.execSQL("CREATE TABLE IF NOT EXISTS rem(vehicle VARCHAR,date VARCHAR,sn VARCHAR(20));");
-            mydatabase.execSQL("DELETE FROM rem WHERE vehicle='" + veh.getText().toString().toUpperCase() + "'");
-            mydatabase.execSQL("INSERT INTO rem VALUES('" + veh.getText().toString().toUpperCase() + "','" + newDate + "','" + nsn.getText().toString() + "')");
+            mydatabase.execSQL("CREATE TABLE IF NOT EXISTS rem(vehicle VARCHAR,date VARCHAR,sn VARCHAR(20),id VARCHAR);");
+            mydatabase.execSQL("DELETE FROM rem WHERE id='"+sharedpreferences.getString("id",null)+"' and vehicle='" + veh.getText().toString().toUpperCase() + "'");
+            mydatabase.execSQL("INSERT INTO rem VALUES('" + veh.getText().toString().toUpperCase() + "','" + newDate + "','" + nsn.getText().toString() + "','"+sharedpreferences.getString("id",null)+"')");
             Toast.makeText(Main4Activity.this, "Reminder Added Successfully", Toast.LENGTH_LONG).show();
             Log.d("Date","Reminder");
             finish();

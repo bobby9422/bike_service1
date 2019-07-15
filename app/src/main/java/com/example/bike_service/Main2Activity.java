@@ -5,8 +5,13 @@ import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Handler;
 import android.support.v4.app.NotificationCompat;
@@ -20,6 +25,8 @@ public class Main2Activity extends AppCompatActivity {
     private PendingIntent pendingIntent;
     private AlarmManager manager;
     SharedPreferences prf;
+    SQLiteDatabase mydatabase;
+    Cursor resultSet;
     private static long back_pressed;
     @Override
     public void onBackPressed()
@@ -35,6 +42,9 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         this.setTitle("Menu");
+        mydatabase = openOrCreateDatabase("service", MODE_PRIVATE, null);
+        mydatabase.execSQL("CREATE TABLE IF NOT EXISTS login(id VARCHAR,name VARCHAR,password VARCHAR(20),state VARCHAR);");
+
         prf = getSharedPreferences("login",MODE_PRIVATE);
        // Toast.makeText(Main2Activity.this,"Main2Activity.this onCreate invoked",Toast.LENGTH_LONG).show();
 
@@ -104,7 +114,11 @@ public class Main2Activity extends AppCompatActivity {
     }
     public void logout(View v)
     {
+        SharedPreferences sharedpreferences = getSharedPreferences("login", this.MODE_PRIVATE);
+
         SharedPreferences.Editor editor = prf.edit();
+
+        mydatabase.execSQL("UPDATE login SET state = '0' WHERE id = '"+sharedpreferences.getString("id","null")+"'");
         editor.clear();
         editor.commit();
         editor.apply();
@@ -139,12 +153,47 @@ public class Main2Activity extends AppCompatActivity {
 //        Toast.makeText(Main2Activity.this,"Main2Activity.this onStart invoked",Toast.LENGTH_LONG).show();
 //
 //    }
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        Toast.makeText(Main2Activity.this,"Main2Activity onResume invoked",Toast.LENGTH_LONG).show();
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences sharedpreferences = getSharedPreferences("login", this.MODE_PRIVATE);
+        if(sharedpreferences.contains("user") && sharedpreferences.contains("pass") && sharedpreferences.contains("id") && sharedpreferences.contains("state")) {
+//        {
+            // Toast.makeText(Main2Activity.this,"Main2Activity onResume invoked",Toast.LENGTH_LONG).show();
+            JobScheduler jobScheduler = (JobScheduler) getApplicationContext()
+                    .getSystemService(JOB_SCHEDULER_SERVICE);
+
+            ComponentName componentName = new ComponentName(this,
+                    logoutJob.class);
+            boolean hasBeenScheduled = false;
+            Toast.makeText(Main2Activity.this, "job:" + jobScheduler.getAllPendingJobs(), Toast.LENGTH_LONG).show();
 //
-//    }
+            for (JobInfo jobInfo : jobScheduler.getAllPendingJobs()) {
+                Toast.makeText(Main2Activity.this, "job:" + jobInfo, Toast.LENGTH_LONG).show();
+//
+                if (jobInfo != null) {
+                    hasBeenScheduled = true;
+                    break;
+                } else {
+                    hasBeenScheduled = false;
+                }
+            }
+            if (hasBeenScheduled == false) {
+
+                JobInfo jobInfo = new JobInfo.Builder(1, componentName)
+                        .setRequiredNetworkType(
+                                JobInfo.NETWORK_TYPE_ANY)
+                        .setPersisted(true).setMinimumLatency(50000).setOverrideDeadline(30000).build();
+                jobScheduler.schedule(jobInfo);
+                Toast.makeText(Main2Activity.this, "set", Toast.LENGTH_LONG).show();
+//
+            }
+        }
+        else
+        {
+            finish();
+        }
+    }
 //    @Override
 //    protected void onPause() {
 //        super.onPause();
