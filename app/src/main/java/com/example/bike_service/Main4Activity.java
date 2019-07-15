@@ -251,7 +251,7 @@ public class Main4Activity extends AppCompatActivity {
         } else if (!vehicle.toString().isEmpty()) {
            // Toast.makeText(Main4Activity.this, "veh:"+vehicle+":", Toast.LENGTH_LONG).show();
             Log.d("vehicle","veh:"+vehicle+":");
-            resultSet = mydatabase.rawQuery("Select * from user where id='"+sharedpreferences.getString("id",null)+"' andvehicle='" + vehicle.toString().toUpperCase() + "'", null);
+            resultSet = mydatabase.rawQuery("Select * from user where id='"+sharedpreferences.getString("id",null)+"' and vehicle='" + vehicle.toString().toUpperCase() + "'", null);
             if (resultSet.getCount() == 0) {
               //  Toast.makeText(Main4Activity.this, "Create New User", Toast.LENGTH_LONG).show();
                 i = new Intent(Main4Activity.this, Main3Activity.class);

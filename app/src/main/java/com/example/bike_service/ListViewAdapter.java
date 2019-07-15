@@ -32,7 +32,8 @@ import android.widget.Toast;
         SharedPreferences sharedpreferences;
         SharedPreferences.Editor editor;
     SQLiteDatabase mydatabase;
-    Intent i;
+        vehicleview vehviewlist;
+        Intent i;
     private Context context;
     private List<vehicleview> vehlist;
         TextView name1 ;
@@ -57,7 +58,7 @@ import android.widget.Toast;
         sharedpreferences = context.getSharedPreferences("login",Context.MODE_PRIVATE);
         editor = sharedpreferences.edit();
         //get the property we are displaying
-        vehicleview vehviewlist = vehlist.get(position);
+      vehviewlist = vehlist.get(position);
 
         //get the inflater and inflate the XML layout for each item
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
@@ -72,11 +73,12 @@ import android.widget.Toast;
       srem=(Button)view.findViewById(R.id.button14) ;
 
         //set address and description
-        String name = vehviewlist.getName() ;
+        String name = String.valueOf(vehviewlist.getName()) ;
         name1.setText("Name:"+name);
-
-              //set price and rental attributes
+             //set price and rental attributes
         mobile1.setText("Mobile:" + String.valueOf(vehviewlist.getMobile()));
+       // Toast.makeText(context, String.valueOf(vehviewlist.getMobile())+":mobile:"+name+"pos:"+vehlist.get(position), Toast.LENGTH_LONG).show();
+
         vehicle1.setText("Vehicle No:" + String.valueOf(vehviewlist.getVehicle()));
         date1.setText("Service Date:" + String.valueOf(vehviewlist.getDate()));
 
@@ -84,12 +86,13 @@ import android.widget.Toast;
         {
             @Override
             public void onClick(View v)
-            {
+            {try {
+               // Toast.makeText(context, "mobile:"+vehlist.get(position).getMobile().toString(), Toast.LENGTH_LONG).show();
+String mobile=vehlist.get(position).getMobile().toString();
+               // String[] parts = part.split(":");
+             //   String mobile = parts[1]; // 034556
+            //   Toast.makeText(context, ""+part, Toast.LENGTH_LONG).show();
 
-                String[] parts = vehlist.get(position).getMobile().toString().split(":");
-                String mobile = parts[1]; // 034556
-               // Toast.makeText(context, ""+mobile, Toast.LENGTH_LONG).show();
-                try {
                     Intent callIntent = new Intent(Intent.ACTION_CALL);
                     callIntent.setData(Uri.parse("tel:+91" + mobile));//change the number.
                     context.startActivity(callIntent);
@@ -106,13 +109,18 @@ import android.widget.Toast;
             @Override
             public void onClick(View v)
             {
-
-                String[] parts = vehlist.get(position).getVehicle().toString().split(":");
-                String vno = parts[1]; // 034556
-            //    Toast.makeText(context, ""+vno, Toast.LENGTH_LONG).show();
-                i = new Intent(context, Main4Activity.class);
-                i.putExtra("vehicle",vno.toString());
-                context.startActivity(i);
+try {
+   // String[] parts = vehlist.get(position).getVehicle().toString().split(":");
+    String vno = vehlist.get(position).getVehicle().toString(); // 034556
+    //    Toast.makeText(context, ""+vno, Toast.LENGTH_LONG).show();
+    i = new Intent(context, Main4Activity.class);
+    i.putExtra("vehicle", vno.toString());
+    context.startActivity(i);
+}
+catch (Exception e)
+{
+    Toast.makeText(context, ""+e.getMessage(), Toast.LENGTH_LONG).show();
+}
             }
 
         });
@@ -135,8 +143,8 @@ import android.widget.Toast;
 
                 try {
 
-                    String[] parts = vehlist.get(position).getMobile().toString().split(":");
-                    String mobile = parts[1]; // 034556
+                   // String[] parts = vehlist.get(position).getMobile().toString().split(":");
+                    String mobile = vehlist.get(position).getMobile().toString();// 034556
                     //  Toast.makeText(context, "" + mobile, Toast.LENGTH_LONG).show();
 
                     Intent intent = new Intent(context, Main5Activity.class);
@@ -168,8 +176,8 @@ import android.widget.Toast;
             {
                 try {
 
-                    String[] parts = vehlist.get(position).getVehicle().toString().split(":");
-                    String vno = parts[1]; // 034556
+                    //String[] parts = vehlist.get(position).getVehicle().toString().split(":");
+                    String vno =  vehlist.get(position).getVehicle().toString(); // 034556
                //     Toast.makeText(context, ""+vno,
                  //           Toast.LENGTH_LONG).show();
                     mydatabase = context.openOrCreateDatabase("service", Context.MODE_PRIVATE, null);

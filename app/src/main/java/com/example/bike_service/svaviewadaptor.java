@@ -57,8 +57,9 @@ public class svaviewadaptor extends ArrayAdapter<svaview> {
     //set address and description
     String name = svaviewlist.getName();
     name1.setText(String.valueOf(name));
+            //Toast.makeText(context, ""+name+"pos:"+svalist.get(position), Toast.LENGTH_LONG).show();
 
-    //set price and rental attributes
+            //set price and rental attributes
     mobile1.setText(String.valueOf(svaviewlist.getMobile()));
     vehicle1.setText(String.valueOf(svaviewlist.getVehicle()));
     date1.setText(String.valueOf(svaviewlist.getDate()));

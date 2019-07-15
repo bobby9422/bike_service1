@@ -37,9 +37,10 @@ public class ServiceAddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_add);
         this.setTitle("Service");
-        sharedpreferences = getSharedPreferences("login", this.MODE_PRIVATE);
         try
         {
+        sharedpreferences = getSharedPreferences("login", this.MODE_PRIVATE);
+
 
        adapter = new prviewadaptor(this, 0, prlist);
         mydatabase = openOrCreateDatabase("service", MODE_PRIVATE, null);
@@ -118,7 +119,7 @@ catch(Exception e)
 
  Cursor prresultSet = mydatabase.rawQuery("SELECT * \n" +
                         "FROM service\n" +
-                        "INNER JOIN user ON service.vehicle = user.vehicle where user.id='"+sharedpreferences.getString("id",null)+"' user.vehicle='"+vehicle.toUpperCase()+"' and service.edate!=''",null);
+                        "INNER JOIN user ON service.vehicle = user.vehicle where user.id='"+sharedpreferences.getString("id",null)+"' and user.vehicle='"+vehicle.toUpperCase()+"' and service.edate!=''",null);
                 try {
 
                     if (prresultSet.moveToFirst()) {
@@ -272,7 +273,7 @@ catch(Exception e)
 
                 mydatabase.execSQL("UPDATE service\n"+
                         "SET bill = '"+amount+"', summary='"+summary+"', edate='"+oldDate+"'\n" +
-                        "WHERE id='"+sharedpreferences.getString("id",null)+"' andedate = '' and vehicle='"+veh.getText().toString().toUpperCase()+"'");
+                        "WHERE id='"+sharedpreferences.getString("id",null)+"' and edate = '' and vehicle='"+veh.getText().toString().toUpperCase()+"'");
                 SmsManager
                         sms = SmsManager.getDefault();
                 sms.sendTextMessage("+91" + mob.getText().toString(), null, "SHRI SAI AUTOMOBILE\nYOUR BILL IS"+amount+"\n Service complete", null, null);

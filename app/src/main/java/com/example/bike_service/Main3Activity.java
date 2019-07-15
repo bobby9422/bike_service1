@@ -65,6 +65,7 @@ public class Main3Activity extends AppCompatActivity {
     }
 
     public void search(View v) {
+
         String vehicle;
         vehicle = veh.getText().toString();
         if (vehicle.isEmpty()) {

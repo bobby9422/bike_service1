@@ -102,7 +102,7 @@ public class ServiceViewActivity extends AppCompatActivity {
         svalist.clear();
         resultSet = mydatabase.rawQuery("SELECT user.name, user.mobile, * \n" +
                 "FROM service\n" +
-                "INNER JOIN user ON service.vehicle = user.vehicle where id='"+sharedpreferences.getString("id",null)+"' and service.edate=''", null);
+                "INNER JOIN user ON service.vehicle = user.vehicle where user.id='"+sharedpreferences.getString("id",null)+"' and service.edate=''", null);
 
         try {
 

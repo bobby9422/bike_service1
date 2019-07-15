@@ -106,33 +106,11 @@ public class Main5Activity extends AppCompatActivity {
 
 
 
-        ListView listView = (ListView) findViewById(R.id.list);
-        listView.setAdapter(adapter);
 
-        AdapterView.OnItemClickListener adapterViewListener = new AdapterView.OnItemClickListener() {
 
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                vehicleview vv = vehlist.get(position);
-              //  Toast.makeText(Main5Activity.this, ""+vv.getName(), Toast.LENGTH_LONG).show();
-
-//                Intent intent = new Intent(Main5ActivityActivity.this, DetailActivity.class);
-//                intent.putExtra("streetNumber", property.getStreetNumber());
-//                intent.putExtra("streetName", property.getStreetName());
-//                intent.putExtra("suburb", property.getSuburb());
-//                intent.putExtra("state", property.getState());
-//                intent.putExtra("image", property.getImage());
-//                intent.putExtra("bedrooms", property.getBedrooms());
-//                intent.putExtra("bathrooms", property.getBathrooms());
-//                intent.putExtra("carspots", property.getCarspots());
-//                intent.putExtra("description", property.getDescription());
-//
-//                startActivity(intent);
-            }
-        };
 //set the listener to the list view
-        listView.setOnItemClickListener(adapterViewListener);
+
         all.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -200,9 +178,9 @@ public class Main5Activity extends AppCompatActivity {
 //                new vehicleview("bobby","7020724885","MH14FE6320","28-06-2019"));
 
 
-
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(adapter);
+
 
     }
     @Override
@@ -232,7 +210,7 @@ public class Main5Activity extends AppCompatActivity {
             mydatabase.execSQL("CREATE TABLE IF NOT EXISTS user(vehicle VARCHAR,model VARCHAR,name VARCHAR,mobile VARCHAR,email VARCHAR,id VARCHAR);");
             resultSet = mydatabase.rawQuery("SELECT user.mobile,rem.date \n" +
                     "FROM user\n" +
-                    "INNER JOIN rem ON user.vehicle = rem.vehicle where id='"+sharedpreferences.getString("id",null)+"' ", null);
+                    "INNER JOIN rem ON user.vehicle = rem.vehicle where user.id='"+sharedpreferences.getString("id",null)+"' ", null);
             amobile = new ArrayList<String>();
             //String[] amobile={""};int i=0;
             if (resultSet.getCount() > 0) {
