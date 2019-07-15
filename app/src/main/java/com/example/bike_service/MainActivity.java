@@ -337,7 +337,7 @@ catch(Exception e)
         }
         else if(requestCode==200 && grantResults[0]==-1)
         {
-            Toast.makeText(MainActivity.this,"Allow message permission!!" , Toast.LENGTH_LONG).show();
+            //Toast.makeText(MainActivity.this,"Allow message permission!!" , Toast.LENGTH_LONG).show();
         }
         if(requestCode==300 && grantResults[0]==0)
         {
@@ -346,7 +346,7 @@ catch(Exception e)
         else if(requestCode==300 && grantResults[0]==-1)
         {
 
-            Toast.makeText(MainActivity.this,"Allow Call permission!!" , Toast.LENGTH_LONG).show();
+            //Toast.makeText(MainActivity.this,"Allow Call permission!!" , Toast.LENGTH_LONG).show();
         }
     }
 

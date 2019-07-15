@@ -40,7 +40,7 @@ return false;
                 Manifest.permission.CALL_PHONE)
                 != PackageManager.PERMISSION_GRANTED) {
 
-            ActivityCompat.requestPermissions(act,new String[]{Manifest.permission.SEND_SMS},b);
+            ActivityCompat.requestPermissions(act,new String[]{Manifest.permission.CALL_PHONE},b);
 
             //      Toast.LENGTH_LONG).show();
             return false;
