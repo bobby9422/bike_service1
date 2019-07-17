@@ -9,7 +9,7 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
         android:background="#E6E6E0"
         card_view:cardBackgroundColor="#ffffff"
         card_view:cardElevation="2dp"
@@ -17,22 +17,36 @@
         android:layout_gravity="center"
 
         >
-        <AbsoluteLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:orientation="vertical"
             >
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                />
             <TextView
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_x="67dp"
-                android:layout_y="24dp"
+                android:layout_marginRight="10dp"
                 android:gravity="left"
                 android:text="name"
-                android:textColor="#000000"
+                android:textColor="#4d4d4d"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -40,38 +54,42 @@
                 android:id="@+id/mobile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_x="236dp"
-                android:layout_y="39dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="10dp"
                 android:text="mobile"
-                android:textColor="#0066ff"
+                android:textColor="#4d4d4d"
                 android:textSize="16dp"
                 android:textStyle="bold"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="19dp" />
+                />
+        </LinearLayout>
+                <TableRow
+                    android:layout_height="1dp"
+                    android:layout_width="200dp"
+                    android:background="#4d4d4d"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
 
+
+                    />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
             <TextView
                 android:id="@+id/vehicle_no"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_x="236dp"
-                android:layout_y="6dp"
+
                 android:text="vehicle no"
-                android:textColor="#000000"
+                android:textColor="#4d4d4d"
                 android:textSize="16dp"
-                android:textStyle="bold"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="26dp" />
-
-            <CheckBox
-                android:id="@+id/checkBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_x="16dp"
-                android:layout_y="18dp"
-                tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="16dp" />
+                android:textStyle="bold" />
 
 
-        </AbsoluteLayout>
+
+</LinearLayout>
+        </LinearLayout>
+        </RelativeLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>

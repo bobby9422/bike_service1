@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,19 +8,28 @@
     android:orientation="vertical"
     android:background="#ffffff">
 
-
-    <Button
-        android:id="@+id/all"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Send All Reminder" />
+        <Button
+            android:id="@+id/all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Send All Reminder"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp"
+            android:layout_gravity="bottom"
+            android:textSize="17sp"
+            android:textAllCaps="true"
+            android:background="#4d4d4d"
+            android:textColor="#fff"/>
 
     <ListView
         android:id="@+id/list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:divider="@null"
-        />
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:divider="@null" />
 
 
 </LinearLayout>

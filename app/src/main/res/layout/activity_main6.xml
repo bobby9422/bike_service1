@@ -5,7 +5,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="fill_parent"
 android:layout_height="fill_parent"
 android:orientation="vertical"
-android:background="#ffffff"
+android:background="#4d4d4d"
 tools:context=".Main6Activity">
 
 
@@ -15,10 +15,13 @@ tools:context=".Main6Activity">
     android:layout_height="wrap_content"
     android:text="Send Message To All"
         android:focusedByDefault="true"
-        android:background="@drawable/values"
-        android:layout_margin="2dp"
-        android:textColor="#ffffff"
-
+        style="@drawable/values"
+        android:layout_margin="10dp"
+        android:layout_marginBottom="0dp"
+        android:textSize="17sp"
+        android:textAllCaps="true"
+        android:background="#fff"
+        android:textColor="#4d4d4d"
 
         />
 
@@ -49,7 +52,9 @@ tools:context=".Main6Activity">
         android:id="@+id/contactlist"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:dividerHeight="0.5dp" />
+        android:dividerHeight="0.5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
 
 </LinearLayout>
 

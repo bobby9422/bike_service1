@@ -25,7 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class Main4Activity extends AppCompatActivity {
-    Button search,adduser,set,cancel;
+    Button search,set,cancel;
     TextView ak,tr,day;
     EditText veh,name,mob,nsn,akm,tkm,day1;
     RadioGroup rg;
@@ -42,7 +42,7 @@ public class Main4Activity extends AppCompatActivity {
         this.setTitle("Reminder");
         mydatabase = openOrCreateDatabase("service", MODE_PRIVATE, null);
         search=(Button) findViewById(R.id.button12) ;
-        adduser=(Button) findViewById(R.id.button13) ;
+
         set=(Button) findViewById(R.id.button15) ;
         cancel=(Button) findViewById(R.id.button16) ;
         ak=(TextView) findViewById(R.id.textView3) ;
@@ -58,7 +58,7 @@ public class Main4Activity extends AppCompatActivity {
         r1=(RadioButton) findViewById(R.id.radioButton) ;
         r2=(RadioButton) findViewById(R.id.radioButton2) ;
         rg=(RadioGroup)findViewById(R.id.rgroup);
-        adduser.setVisibility(View.GONE);
+
         set.setVisibility(View.GONE);
         ak.setVisibility(View.GONE);
         tr.setVisibility(View.GONE);
@@ -262,7 +262,7 @@ public class Main4Activity extends AppCompatActivity {
 
             } else if (resultSet.getCount() > 0) {
              //   Toast.makeText(Main4Activity.this, "from update", Toast.LENGTH_LONG).show();
-                adduser.setVisibility(View.GONE);
+//                adduser.setVisibility(View.GONE);
                 set.setVisibility(View.VISIBLE);
                 ak.setVisibility(View.VISIBLE);
                 tr.setVisibility(View.VISIBLE);

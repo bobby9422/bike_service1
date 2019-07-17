@@ -14,7 +14,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="all"
-            android:text="Collect Bike Msg" />
+            android:text="Collect Bike Msg"
+            android:textSize="17sp"
+            android:textAllCaps="true"
+            android:background="#4d4d4d"
+            android:textColor="#fff"/>
 
         <ListView
             android:id="@+id/sva_list"

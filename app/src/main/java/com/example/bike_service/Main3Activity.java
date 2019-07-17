@@ -43,7 +43,7 @@ public class Main3Activity extends AppCompatActivity {
         email.setVisibility(View.GONE);
         add.setVisibility(View.GONE);
         up.setVisibility(View.GONE);
-        search.setVisibility(View.GONE);
+       // search.setVisibility(View.GONE);
         veh.setEnabled(true);
         sharedpreferences = getSharedPreferences("login", this.MODE_PRIVATE);
         mydatabase = openOrCreateDatabase("service", MODE_PRIVATE, null);

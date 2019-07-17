@@ -74,13 +74,13 @@ import android.widget.Toast;
 
         //set address and description
         String name = String.valueOf(vehviewlist.getName()) ;
-        name1.setText("Name:"+name);
+        name1.setText(name);
              //set price and rental attributes
-        mobile1.setText("Mobile:" + String.valueOf(vehviewlist.getMobile()));
+        mobile1.setText(String.valueOf(vehviewlist.getMobile()));
        // Toast.makeText(context, String.valueOf(vehviewlist.getMobile())+":mobile:"+name+"pos:"+vehlist.get(position), Toast.LENGTH_LONG).show();
 
-        vehicle1.setText("Vehicle No:" + String.valueOf(vehviewlist.getVehicle()));
-        date1.setText("Service Date:" + String.valueOf(vehviewlist.getDate()));
+        vehicle1.setText(String.valueOf(vehviewlist.getVehicle()));
+        date1.setText( String.valueOf(vehviewlist.getDate()));
 
         mobile1.setOnClickListener(new View.OnClickListener()
         {

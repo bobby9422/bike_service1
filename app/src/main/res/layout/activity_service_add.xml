@@ -1,137 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:layout_editor_absoluteX="140dp"
-    tools:layout_editor_absoluteY="510dp">
-    <LinearLayout
-        android:layout_width="match_parent"
+    android:scrollbarAlwaysDrawVerticalTrack="true"
+    android:background="#808080"
+    tools:context=".ServiceAddActivity">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
         android:layout_height="match_parent"
+
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="70dp"
+        android:background="#fff"
+        android:elevation="4dp"
+        android:radius="35dp"
         android:orientation="vertical"
-        tools:context=".ServiceAddActivity">
+        android:padding="20dp"
 
-    <AbsoluteLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
+        android:layout_centerInParent="true">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingTop="10dp">
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
         <EditText
             android:id="@+id/sad_vehicleNo_editText"
-            android:layout_width="240dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_x="33dp"
-            android:layout_y="12dp"
+
             android:ems="10"
             android:hint="Enter Vehicle No"
             android:inputType="textPersonName"
-            tools:layout_editor_absoluteX="26dp"
-            tools:layout_editor_absoluteY="16dp" />
-
+             />
+                </android.support.design.widget.TextInputLayout>
         <Button
             android:id="@+id/sad_search_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_x="292dp"
-            android:layout_y="13dp"
             android:onClick="search"
-            android:text="search"
-            tools:layout_editor_absoluteX="131dp"
-            tools:layout_editor_absoluteY="119dp" />
-
+            android:text="Search"
+            android:layout_margin="10dp"
+            android:background="#808080"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="22sp"
+            android:layout_gravity="center"
+             />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:gravity="center">
         <TextView
             android:id="@+id/sad_name_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_x="35dp"
-            android:layout_y="89dp"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textSize="17sp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            />
 
         <TextView
             android:id="@+id/sad_mobile_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_x="213dp"
-            android:layout_y="91dp"
-            android:text="TextView" />
-
+            android:text="TextView"
+            android:textSize="17sp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            />
+            </LinearLayout>
         <TextView
             android:id="@+id/sad_sn_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_x="38dp"
-            android:layout_y="136dp"
-            android:text="TextView" />
+            android:layout_gravity="center"
+            android:text="TextView"
+            android:textSize="17sp"/>
 
         <Button
             android:id="@+id/sad_addService_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_x="143dp"
-            android:layout_y="157dp"
+            android:layout_margin="10dp"
+            android:background="#808080"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="22sp"
+            android:layout_gravity="center"
             android:onClick="add"
-            android:text="ADD" />
+            android:text="Add" />
 
         <TextView
             android:id="@+id/sad_date_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_x="307dp"
-            android:layout_y="228dp"
+            android:layout_gravity="right"
+            android:layout_margin="4dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="17sp"
             android:text="TextView" />
-
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
         <EditText
             android:id="@+id/sad_bRecord_editText"
-            android:layout_width="331dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_x="40dp"
-            android:layout_y="266dp"
             android:ems="10"
             android:hint="Bill Record"
             android:inputType="text" />
-
+                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right">
         <EditText
             android:id="@+id/sad_amount_editText"
             android:layout_width="97dp"
             android:layout_height="wrap_content"
-            android:layout_x="162dp"
-            android:layout_y="328dp"
             android:ems="10"
             android:hint="Amount"
             android:inputType="number"
             android:text="0" />
-
+                </android.support.design.widget.TextInputLayout>
         <Button
             android:id="@+id/sad_send_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_x="287dp"
-            android:layout_y="329dp"
+            android:layout_margin="10dp"
+            android:background="#808080"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="22sp"
             android:onClick="send"
             android:text="send"
-            tools:layout_editor_absoluteX="295dp"
-            tools:layout_editor_absoluteY="325dp" />
-
+            android:layout_gravity="right"
+             />
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_gravity="center">
         <Button
             android:id="@+id/sad_bill_button"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_x="50dp"
-            android:layout_y="395dp"
+            android:layout_margin="10dp"
+            android:background="#808080"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="22sp"
             android:onClick="bill"
-            android:text="bill" />
+            android:text="Bill" />
 
         <Button
             android:id="@+id/sad_delete_button"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_x="252dp"
-            android:layout_y="391dp"
+            android:layout_margin="10dp"
+            android:background="#808080"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="22sp"
             android:onClick="delete"
-            android:text="delete" />
+            android:text="Delete" />
 
-    </AbsoluteLayout>
+
+</LinearLayout>
     <AbsoluteLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -141,8 +193,11 @@
             android:id="@+id/prlist"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:divider="@null"/>
+            android:divider="@null"
+            android:background="#fff"/>
 
     </AbsoluteLayout>
-    </LinearLayout>
-</ScrollView>
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+</RelativeLayout>
