@@ -1,107 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".MainActivity">
-    <AbsoluteLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical"
+        android:background="#808080"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        tools:context=".MainActivity"
+
         >
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="209dp"
-            android:layout_height="43dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_x="51dp"
-            android:layout_y="366dp"
-            android:text="Login"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText2"
-            app:layout_constraintVertical_bias="0.037" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="43dp"
-            android:layout_marginStart="250dp"
-            android:layout_marginLeft="250dp"
-            android:layout_marginTop="46dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="8dp"
-            android:layout_x="269dp"
-            android:layout_y="366dp"
-            android:onClick="clear"
-            android:text="clear"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.544"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText2"
-            app:layout_constraintVertical_bias="0.012" />
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="100dp"
+        android:background="#fff"
+        android:elevation="4dp"
+        android:radius="35dp"
+        android:orientation="vertical"
+        android:padding="20dp"
+
+        android:layout_centerInParent="true">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="10dp">
+            <TextView
+                android:id="@+id/login_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="22dp"
+                android:gravity="center_horizontal"
+                android:text="Login"
+                android:textColor="#808080"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/reg_name"
-            android:layout_width="309dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="250dp"
-            android:layout_x="47dp"
-            android:layout_y="161dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Enter Username"
-            android:inputType="textPersonName"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:drawableLeft="@drawable/user"
 
-        <EditText
+            android:drawableTint="#808080"
+            android:inputType="textPersonName"
+            android:singleLine="true" />
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true"
+                >
+
+            <EditText
             android:id="@+id/editText2"
-            android:layout_width="309dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_x="46dp"
-            android:layout_y="264dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+
+                android:singleLine="true"
             android:ems="10"
+                android:drawableLeft="@drawable/password"
+                android:drawablePadding="0dp"
+                android:drawableTint="#808080"
             android:hint="Enter Password"
             android:inputType="textPassword"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                />
+            </android.support.design.widget.TextInputLayout>
 
-        <TextView
-            android:id="@+id/register_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_x="157dp"
-            android:layout_y="463dp"
-            android:text="register?"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            tools:layout_editor_absoluteX="170dp"
-            tools:layout_editor_absoluteY="528dp" />
 
-    </AbsoluteLayout>
-</ScrollView>
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Login"
+                android:layout_margin="22dp"
+                android:background="#808080"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="22sp"
+                android:layout_gravity="center"
+                android:radius="50dp"
+
+                />
+            <TextView
+                android:id="@+id/register_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Register?"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:layout_margin="22dp"
+                android:layout_gravity="right"
+
+                />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clear"
+                android:textSize="22sp"
+                android:textAllCaps="false"
+                android:text="clear"
+                android:layout_margin="22dp"
+                android:background="#808080"
+                android:textColor="#fff"
+                android:layout_gravity="right"
+                />
+
+        </LinearLayout>
+    </RelativeLayout>
+    </RelativeLayout>

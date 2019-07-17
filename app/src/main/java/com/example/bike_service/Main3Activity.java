@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,13 +43,30 @@ public class Main3Activity extends AppCompatActivity {
         email.setVisibility(View.GONE);
         add.setVisibility(View.GONE);
         up.setVisibility(View.GONE);
-        search.setVisibility(View.VISIBLE);
+        search.setVisibility(View.GONE);
         veh.setEnabled(true);
         sharedpreferences = getSharedPreferences("login", this.MODE_PRIVATE);
         mydatabase = openOrCreateDatabase("service", MODE_PRIVATE, null);
         mydatabase.execSQL("CREATE TABLE IF NOT EXISTS user(vehicle VARCHAR,model VARCHAR,name VARCHAR,mobile VARCHAR,email VARCHAR,id VARCHAR);");
         resultSet = mydatabase.rawQuery("Select * from user where id='"+sharedpreferences.getString("id","null")+"'", null);
+        veh.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int DRAWABLE_LEFT = 0;
+                final int DRAWABLE_TOP = 1;
+                final int DRAWABLE_RIGHT = 2;
+                final int DRAWABLE_BOTTOM = 3;
 
+                if(event.getAction() == MotionEvent.ACTION_UP) {
+                    if(event.getRawX() >= (veh.getRight() - veh.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        Toast.makeText(Main3Activity.this, "hello:" , Toast.LENGTH_LONG).show();
+
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
         if (resultSet.getCount() == 0) {
            // Toast.makeText(Main3Activity.this, "" + resultSet.getCount(), Toast.LENGTH_LONG).show();
         }

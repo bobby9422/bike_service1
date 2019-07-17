@@ -30,6 +30,7 @@ TelephonyManager tel;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        this.getSupportActionBar().hide();
         name=(EditText)findViewById(R.id.reg_name);
         pass=(EditText)findViewById(R.id.reg_pass);
         mobile=(EditText)findViewById(R.id.reg_mobile);

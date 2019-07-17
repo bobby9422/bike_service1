@@ -1,53 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#808080"
+    android:scrollbarAlwaysDrawVerticalTrack="true"
     tools:context=".Main2Activity">
-    <AbsoluteLayout
+    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="70dp"
+        android:background="#fff"
+        android:elevation="4dp"
+        android:radius="35dp"
         android:orientation="vertical"
-        >
+        android:padding="20dp"
+
+        android:layout_centerInParent="true">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding_top="0dp">
 
         <Button
             android:id="@+id/button3"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_x="41dp"
             android:layout_y="44dp"
             android:onClick="service"
             android:text="Service"
-            android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+            android:textSize="22sp"
+            android:textAllCaps="false"
+            android:layout_margin="10dp"
+            android:background="#808080"
+            android:textColor="#fff" />
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_x="45dp"
-        android:layout_y="129dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:textAllCaps="false"
+        android:layout_margin="10dp"
+        android:background="#808080"
+        android:textColor="#fff"
         android:onClick="reminder"
         android:text="Reminder add/update"
-        android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+         />
 
     <Button
         android:id="@+id/button5"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_x="41dp"
-        android:layout_y="205dp"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:textSize="22sp"
+        android:textAllCaps="false"
+        android:layout_margin="10dp"
+        android:background="#808080"
+        android:textColor="#fff"
         android:onClick="user"
         android:text="user add/update"
         android:textAppearance="@style/TextAppearance.AppCompat.Button" />
 
         <Button
             android:id="@+id/button7"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_x="49dp"
-            android:layout_y="301dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:textAllCaps="false"
+            android:layout_margin="10dp"
+            android:background="#808080"
+            android:textColor="#fff"
             android:onClick="aservice"
             android:text="Active Servicing"
             android:textAppearance="@style/TextAppearance.AppCompat.Button" />
@@ -55,42 +84,55 @@
 
     <Button
         android:id="@+id/button9"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_x="52dp"
-        android:layout_y="386dp"
+        android:textSize="22sp"
+        android:textAllCaps="false"
+        android:layout_margin="10dp"
+        android:background="#808080"
+        android:textColor="#fff"
         android:onClick="active_reminder"
         android:text="Active Reminder"
         android:textAppearance="@style/TextAppearance.AppCompat.Button" />
 
     <Button
         android:id="@+id/button10"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_x="52dp"
-        android:layout_y="459dp"
+        android:textSize="22sp"
+        android:textAllCaps="false"
+        android:layout_margin="10dp"
+        android:background="#808080"
+        android:textColor="#fff"
         android:onClick="contact"
         android:text="Customer Record"
         android:textAppearance="@style/TextAppearance.AppCompat.Button" />
 
     <Button
         android:id="@+id/button11"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_x="52dp"
-        android:layout_y="530dp"
+        android:textSize="22sp"
+        android:textAllCaps="false"
+        android:layout_margin="10dp"
+        android:background="#808080"
+        android:textColor="#fff"
         android:onClick="logout"
         android:text="Logout"
         android:textAppearance="@style/TextAppearance.AppCompat.Button" />
 
         <Button
             android:id="@+id/button19"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_x="52dp"
-            android:layout_y="616dp"
+            android:textSize="22sp"
+            android:textAllCaps="false"
+            android:layout_margin="10dp"
+            android:background="#808080"
+            android:textColor="#fff"
             android:onClick="setting"
             android:text="Settings"
             android:textAppearance="@style/TextAppearance.AppCompat.Button" />
-    </AbsoluteLayout>
-</ScrollView>
+    </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

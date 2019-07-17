@@ -17,11 +17,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".register"></activity>
+
+        <activity android:name=".register"/>
         <activity android:name=".Main6Activity" />
         <service android:name=".logoutJob"
             android:permission="android.permission.BIND_JOB_SERVICE"
-            ></service>
+            />
 
 
         <service

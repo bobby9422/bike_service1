@@ -53,6 +53,7 @@ TextView reg;
         this.setTitle("Login");
         tel = (TelephonyManager) this.getSystemService(MainActivity.TELEPHONY_SERVICE);
 
+        this.getSupportActionBar().hide();
         sharedpreferences = getSharedPreferences("login", this.MODE_PRIVATE);
        // int k=this.MODE_PRIVATE;
         editor = sharedpreferences.edit();
