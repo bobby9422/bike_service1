@@ -3,6 +3,7 @@ package com.example.bike_service;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +24,8 @@ public class register extends AppCompatActivity {
 EditText name,pass,mobile,shop,address;
 Button reg,cancel;
 String rname,rpass,rmobile,rshop,raddress;
+String imei;
+TelephonyManager tel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +37,9 @@ String rname,rpass,rmobile,rshop,raddress;
         address=(EditText)findViewById(R.id.reg_add);
         reg=(Button) findViewById(R.id.reg_reg);
         cancel=(Button) findViewById(R.id.reg_cancel);
+        tel = (TelephonyManager) this.getSystemService(register.TELEPHONY_SERVICE);
 
+        imei=tel.getDeviceId();
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,6 +48,7 @@ String rname,rpass,rmobile,rshop,raddress;
                 rmobile=mobile.getText().toString();
                 rshop=shop.getText().toString();
                 raddress=address.getText().toString();
+
                 if(!rname.isEmpty()&&!rpass.isEmpty()&&!rmobile.isEmpty()&&!rshop.isEmpty()&&!raddress.isEmpty())
                 {
                     register();
@@ -68,7 +74,7 @@ String rname,rpass,rmobile,rshop,raddress;
     {
 
         String getUrl="http://www.shrisaiautomobile.com/login/register.php" +
-                "?name="+rname+"&&password="+rpass+"&&mobile="+rmobile+"&&shop="+rshop+"&&address="+raddress+"&&state=1";
+                "?name="+rname+"&&password="+rpass+"&&mobile="+rmobile+"&&shop="+rshop+"&&address="+raddress+"&&state=0&&imei="+imei;
         RequestQueue requestQueue = Volley.newRequestQueue(register.this);
 
         StringRequest getRequest = new StringRequest(Request.Method.GET, getUrl, new Response.Listener<String>() {

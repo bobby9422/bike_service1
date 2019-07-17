@@ -232,7 +232,7 @@ catch(Exception e)
                         "WHERE id='"+sharedpreferences.getString("id",null)+"' and edate = '' and vehicle='"+veh.getText().toString().toUpperCase()+"'");
                 SmsManager
                         sms = SmsManager.getDefault();
-                sms.sendTextMessage("+91" + mob.getText().toString(), null, "SHRI SAI AUTOMOBILE\nYOUR BILL ESTIMATE IS"+amount, null, null);
+                sms.sendTextMessage("+91" + mob.getText().toString(), null, new defMessage(ServiceAddActivity.this).getMessage()+"\nYOUR BILL ESTIMATE IS"+amount, null, null);
 
 
                 Toast.makeText(ServiceAddActivity.this, "Bill Amount Sent Successfully", Toast.LENGTH_LONG).show();
@@ -276,7 +276,7 @@ catch(Exception e)
                         "WHERE id='"+sharedpreferences.getString("id",null)+"' and edate = '' and vehicle='"+veh.getText().toString().toUpperCase()+"'");
                 SmsManager
                         sms = SmsManager.getDefault();
-                sms.sendTextMessage("+91" + mob.getText().toString(), null, "SHRI SAI AUTOMOBILE\nYOUR BILL IS"+amount+"\n Service complete", null, null);
+                sms.sendTextMessage("+91" + mob.getText().toString(), null, new defMessage(ServiceAddActivity.this).getMessage()+"\nYOUR BILL IS"+amount+"\n Service complete", null, null);
 
 
                 Toast.makeText(ServiceAddActivity.this, "Service Complete", Toast.LENGTH_LONG).show();

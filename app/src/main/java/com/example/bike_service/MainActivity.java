@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -36,6 +37,7 @@ TextView reg;
     SQLiteDatabase mydatabase;
     Cursor resultSet;
     private static long back_pressed;
+    TelephonyManager tel;
     @Override
     public void onBackPressed() {
 
@@ -49,6 +51,7 @@ TextView reg;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.setTitle("Login");
+        tel = (TelephonyManager) this.getSystemService(MainActivity.TELEPHONY_SERVICE);
 
         sharedpreferences = getSharedPreferences("login", this.MODE_PRIVATE);
        // int k=this.MODE_PRIVATE;
@@ -267,36 +270,40 @@ catch(Exception e)
                         String name = jsonObj.getString("name").toString().toUpperCase();
                         String password = jsonObj.getString("pass");
                         String state = jsonObj.getString("state");
-                         if(state.equals("1"))
-                        {
-                            Toast.makeText(MainActivity.this,"Welcome "+name+"!!",Toast.LENGTH_LONG).show();
+                        String imei=jsonObj.getString("imei");
+                      //  Toast.makeText(MainActivity.this,  tel.getDeviceId(), Toast.LENGTH_LONG).show();
 
-                            editor.putString("id", id);
-                            editor.putString("user", name.toUpperCase());
-                            editor.putString("pass", password);
-                            editor.putString("state", state);
-                            editor.commit();
-                            /////////////////////////////////////////////////////////////////
-                            if(value1.equals("active"))
-                            {
-                                mydatabase.execSQL("INSERT INTO login VALUES('" + id + "','" + name+ "','" + password + "','" + state + "')");
+                        if(imei.equals(tel.getDeviceId())) {
+                            if (state.equals("1")) {
+                                Toast.makeText(MainActivity.this, "Welcome " + name + "!!", Toast.LENGTH_LONG).show();
+
+                                editor.putString("id", id);
+                                editor.putString("user", name.toUpperCase());
+                                editor.putString("pass", password);
+                                editor.putString("state", state);
+                                editor.commit();
+                                /////////////////////////////////////////////////////////////////
+                                if (value1.equals("active")) {
+                                    mydatabase.execSQL("INSERT INTO login VALUES('" + id + "','" + name + "','" + password + "','" + state + "')");
+
+                                } else if (value1.equals("not_active")) {
+                                    mydatabase.execSQL("UPDATE login SET state = '" + state + "' WHERE id = '" + id + "'");
+                                }
+                                //////////////////////////////////////////////////////////////////
+                                Toast.makeText(MainActivity.this, "Successful Login!", Toast.LENGTH_LONG).show();
+                                Intent i = new Intent(MainActivity.this, Main2Activity.class);
+                                startActivity(i);
+                                user.setText("");
+                                pass.setText("");
+                                finish();
+                            } else if (state.equals("0")) {
+                                Toast.makeText(MainActivity.this, "Disabled from Server!!", Toast.LENGTH_LONG).show();
 
                             }
-                            else if(value1.equals("not_active"))
-                            {
-                                mydatabase.execSQL("UPDATE login SET state = '"+state+"' WHERE id = '"+id+"'");
-                            }
-                            //////////////////////////////////////////////////////////////////
-                            Toast.makeText(MainActivity.this, "Successful Login!", Toast.LENGTH_LONG).show();
-                            Intent i = new Intent(MainActivity.this, Main2Activity.class);
-                            startActivity(i);
-                            user.setText("");
-                            pass.setText("");
-                            finish();
                         }
-                        else if(state.equals("0"))
+                        else
                         {
-                            Toast.makeText(MainActivity.this, "Disabled from Server!!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this, "This Device not registered with this account!!!", Toast.LENGTH_LONG).show();
 
                         }
                     }

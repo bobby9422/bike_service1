@@ -2,12 +2,14 @@ package com.example.bike_service;
 
 import android.app.ActivityManager;
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -18,6 +20,8 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Main2Activity extends AppCompatActivity {
@@ -244,6 +248,33 @@ public void onRequestPermissionsResult(
 
         Toast.makeText(Main2Activity.this,"Allow Call permission!!" , Toast.LENGTH_LONG).show();
     }
+}
+public void setting(View v)
+{
+    AlertDialog.Builder alert = new AlertDialog.Builder(this);
+    alert.setTitle("Custom Message");
+    alert.setMessage("Add message that your customer will see!!");
+// Create TextView
+    final EditText input = new EditText (this);
+    String msg=new defMessage(Main2Activity.this).getMessage();
+    input.setText(""+msg);
+    alert.setView(input);
+
+    alert.setPositiveButton("SET", new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialogInterface, int i) {
+            new defMessage(Main2Activity.this).setMessage( input.getText().toString());
+            Toast.makeText(Main2Activity.this,"Settings applied",Toast.LENGTH_LONG).show();
+
+        }
+    });
+
+    alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int whichButton) {
+            // Canceled.
+        }
+    });
+    alert.show();
 }
 }
 

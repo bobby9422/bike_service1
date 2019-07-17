@@ -78,7 +78,7 @@ public class ServiceViewActivity extends AppCompatActivity {
                 for(String number : amobile) {
 
 
-                        sms.sendTextMessage("" + number, null, "SHRI SAI AUTOMOBILE\nYOUR bike service is complete", null, null);
+                        sms.sendTextMessage("" + number, null, new defMessage(ServiceViewActivity.this).getMessage()+"\nYOUR bike service is complete", null, null);
                      }
                 Toast.makeText(ServiceViewActivity.this, "Message Sent successfully!",
                         Toast.LENGTH_LONG).show();

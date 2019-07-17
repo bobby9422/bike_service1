@@ -82,5 +82,15 @@
         android:onClick="logout"
         android:text="Logout"
         android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+
+        <Button
+            android:id="@+id/button19"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_x="52dp"
+            android:layout_y="616dp"
+            android:onClick="setting"
+            android:text="Settings"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button" />
     </AbsoluteLayout>
 </ScrollView>
