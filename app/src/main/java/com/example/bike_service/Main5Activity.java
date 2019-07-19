@@ -263,7 +263,7 @@ public class Main5Activity extends AppCompatActivity {
 
                         SmsManager
                                 sms = SmsManager.getDefault();
-                        sms.sendTextMessage("" + no, null, new defMessage(Main5Activity.this).getMessage()+"\nYOUR bile service date is here", null, null);
+                        sms.sendTextMessage("" + no, null, new defMessage(Main5Activity.this).getMessage()+"\nYOUR bike service date is here", null, null);
                     } }
                 Toast.makeText(Main5Activity.this, "Message Sent successfully!",
                         Toast.LENGTH_LONG).show();

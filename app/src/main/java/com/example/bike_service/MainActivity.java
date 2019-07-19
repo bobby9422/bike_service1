@@ -23,6 +23,8 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.ResultSet;
+
 public class MainActivity extends AppCompatActivity {
 EditText user,pass;
 Button b1,b2;
@@ -219,7 +221,14 @@ catch(Exception e)
     @Override
     protected void onResume() {
         super.onResume();
-        reg.setVisibility(View.GONE);
+        Cursor register = mydatabase.rawQuery("SELECT * FROM login", null);
+        if (register.getCount() == 0) {
+            reg.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            reg.setVisibility(View.GONE);
+        }
         new mainPermission().checkPerm(MainActivity.this);
         new mainPermission().checkPermCall(MainActivity.this);
     }

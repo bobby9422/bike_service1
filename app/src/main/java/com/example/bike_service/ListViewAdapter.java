@@ -154,7 +154,7 @@ catch (Exception e)
                     //Get the SmsManager instance and call the sendTextMessage method to send message
                     SmsManager
                             sms = SmsManager.getDefault();
-                    sms.sendTextMessage("+91" + mobile, null, new defMessage(context).getMessage()+"\nYOUR bile service date is here", pi, null);
+                    sms.sendTextMessage("+91" + mobile, null, new defMessage(context).getMessage()+"\nYOUR bike service date is here", pi, null);
                     ((Main5Activity)context).finish();
                     Toast.makeText(context, "Message Sent successfully!",
                             Toast.LENGTH_LONG).show();

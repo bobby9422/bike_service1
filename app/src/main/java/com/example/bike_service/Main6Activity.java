@@ -108,7 +108,7 @@ public class Main6Activity extends AppCompatActivity {
                         if( selection.getChecked())
                         {
                             SmsManager sms = SmsManager.getDefault();
-                            sms.sendTextMessage("+91" +selection.getMobile() , null, "SHRI SAI AUTOMOBILE\nYOUR bile service date is here", null, null);
+                            sms.sendTextMessage("+91" +selection.getMobile() , null, new defMessage(Main6Activity.this).getMessage(), null, null);
                             flag=false;
                         }
                         }
@@ -119,7 +119,7 @@ public class Main6Activity extends AppCompatActivity {
 
                             contactview selection = (contactview) adapter.getItem(i);
                                 SmsManager sms = SmsManager.getDefault();
-                                sms.sendTextMessage("+91" +selection.getMobile() , null, new defMessage(Main6Activity.this).getMessage()+"\nYOUR bike service date is here", null, null);
+                                sms.sendTextMessage("+91" +selection.getMobile() , null, new defMessage(Main6Activity.this).getMessage(), null, null);
                                 flag=false;
 
                         }

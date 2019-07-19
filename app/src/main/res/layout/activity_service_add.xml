@@ -12,10 +12,10 @@
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
 
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="70dp"
+
         android:background="#fff"
         android:elevation="4dp"
         android:radius="35dp"
@@ -184,19 +184,27 @@
 
 
 </LinearLayout>
-    <AbsoluteLayout
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        tools:context=".ServiceAddActivity">
+                <TableRow
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:background="#4d4d4d"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"/>
 
-        <ListView
-            android:id="@+id/prlist"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:divider="@null"
-            android:background="#fff"/>
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    tools:context=".ServiceAddActivity">
 
-    </AbsoluteLayout>
+                    <ListView
+                        android:id="@+id/prlist"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#fff"
+                        android:divider="@null" />
+
+                </ScrollView>
+
             </LinearLayout>
         </ScrollView>
     </RelativeLayout>

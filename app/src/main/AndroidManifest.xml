@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,8 +18,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".register"/>
-        <activity android:name=".Main6Activity" />
+        <activity android:name=".register"
+            android:windowSoftInputMode="adjustNothing">
+        </activity>
+        <activity android:name=".Main6Activity" android:windowSoftInputMode="adjustNothing">
+        </activity>
         <service android:name=".logoutJob"
             android:permission="android.permission.BIND_JOB_SERVICE"
             />
@@ -30,29 +33,46 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".ServiceViewActivity" />
-        <activity android:name=".ServiceAddActivity" />
-        <activity android:name=".Main5Activity">
+        <activity android:name=".ServiceViewActivity" android:windowSoftInputMode="adjustNothing">
+
+            <intent-filter>
+
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ServiceAddActivity" android:windowSoftInputMode="adjustNothing">
+        </activity>
+
+        <activity android:name=".Main5Activity" android:windowSoftInputMode="adjustNothing">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Main4Activity">
+
+        <activity android:name=".Main4Activity" android:windowSoftInputMode="adjustNothing">
+
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Main3Activity">
+
+        <activity android:name=".Main3Activity" android:windowSoftInputMode="adjustNothing">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Main2Activity">
+
+        <activity android:name=".Main2Activity" android:windowSoftInputMode="adjustNothing">
             <intent-filter>
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
+
+        <activity android:name=".MainActivity" android:windowSoftInputMode="adjustNothing">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
