@@ -1,5 +1,7 @@
 package com.example.bike_service;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -280,7 +282,30 @@ catch(Exception e)
 
 
                 Toast.makeText(ServiceAddActivity.this, "Service Complete", Toast.LENGTH_LONG).show();
-                finish();
+
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.setTitle("Add Reminder");
+                alert.setMessage("Click Ok to add reminder?");
+                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                       Intent i1 = new Intent(ServiceAddActivity.this, Main4Activity.class);
+                        // i.putExtra("user",user.getText().toString().toUpperCase());
+                        startActivity(i1);
+                        finish();
+                        //Toast.makeText(ServiceAddActivity.this,"Settings applied",Toast.LENGTH_LONG).show();
+
+                    }
+                });
+
+                alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        finish();
+                    }
+                });
+                alert.show();
+
+
 
             }
             else
@@ -304,7 +329,28 @@ catch(Exception e)
         {
             mydatabase.execSQL("DELETE FROM service WHERE id='"+sharedpreferences.getString("id",null)+"' and vehicle='" + veh.getText().toString().toUpperCase() + "' and edate = ''");
             Toast.makeText(ServiceAddActivity.this, "Service cancelled", Toast.LENGTH_LONG).show();
-            finish();
+
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.setTitle("Add Reminder");
+            alert.setMessage("Click Ok to add reminder?");
+            alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Intent i1 = new Intent(ServiceAddActivity.this, Main4Activity.class);
+                    // i.putExtra("user",user.getText().toString().toUpperCase());
+                    startActivity(i1);
+                    finish();
+                    //Toast.makeText(ServiceAddActivity.this,"Settings applied",Toast.LENGTH_LONG).show();
+
+                }
+            });
+
+            alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    finish();
+                }
+            });
+            alert.show();
         }
         catch (Exception e)
         {
